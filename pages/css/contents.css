@@ -3,5 +3,7 @@
 
 .contents-cell {
   background: lightgray; }
+  .contents-cell .btn-title {
+    background: transparent; }
 
 /*# sourceMappingURL=contents.css.map */
