@@ -2,9 +2,13 @@
 @import "./navbar.css";
 @import "./toolbar.css";
 @import "./contents.css";
+@import "./profile.css";
 
 .text-grey {
   color: grey;
 }
+
+$primary: #7F5AB6;
+$info: grey;
 
 @import "../../bootstrap/scss/bootstrap";
