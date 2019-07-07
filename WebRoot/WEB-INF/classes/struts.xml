@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.objectFactory" value="spring"/>
+
+	<package name="default" extends="struts-default">
+	
+	<!-- 登录页面 -->
+		<action name="signin" class="userAction" method="signin">
+			<result name="success">/index.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="reset"  class="userAction" method="reset">
+			<result name="success"></result>
+			<result name="input"></result>
+		</action>
+		<action name="signup" class="userAction" method="signup">
+			<result name="success">/login.jsp?signup=true</result>
+			<result name="input">/login.jsp?info=true</result>
+		</action>
+		
+	<!-- index -->
+		<action name="themetable" class="themeAction" method="getTimeDescThemes">
+		<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="createTheme" class="themeAction" method="createTheme">
+		<result name="success">/index.jsp</result>
+		</action>
+		
+	</package>
+</struts>

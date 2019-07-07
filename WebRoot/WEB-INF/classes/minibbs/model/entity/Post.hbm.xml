@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping SYSTEM "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="minibbs.model.entity">
+	<class name="Post">
+		<id name="id" type="long">
+			<generator class="native" />
+		</id>
+		<property name="createTime" type="date" not-null="true" />
+		<property name="content" type="string" length="500" not-null="true" />
+		<property name="like" type="int" not-null="true"/>
+		<many-to-one name="user"></many-to-one>
+		<many-to-one name="theme"></many-to-one>
+	</class>
+</hibernate-mapping>

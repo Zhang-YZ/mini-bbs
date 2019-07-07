@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- Hibernate 会话工厂对象 -->
+	<bean id="sessionFactory" class="minibbs.util.HibernateHelper"
+		factory-method="getSessionFactory" />
+
+	<!-- 用户管理的Dao,Service,Action -->
+	<bean id="userDao" class="minibbs.model.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<!-- UserService 用户操作的业务对象 -->
+	<bean id="userService"
+		class="minibbs.model.service.UserServiceImpl">
+		<property name="dao" ref="userDao" />
+	</bean>
+
+	<!-- UserAction 用户操作的控制器对象 -->
+	<bean id="userModel" class="minibbs.model.entity.User"
+		scope="prototype" />
+	<bean id="userAction" class="minibbs.action.UserAction"
+		scope="prototype">
+		<property name="service" ref="userService" />
+		<property name="model" ref="userModel" />
+	</bean>
+
+
+
+	<bean id="themeDao" class="minibbs.model.dao.ThemeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="themeService"
+		class="minibbs.model.service.ThemeServiceImpl">
+		<property name="dao" ref="themeDao" />
+	</bean>
+
+	<!-- UserAction 用户操作的控制器对象 -->
+	<bean id="themeModel" class="minibbs.model.entity.Theme"
+		scope="prototype" />
+	<bean id="themeAction" class="minibbs.action.ThemeAction"
+		scope="prototype">
+		<property name="service" ref="themeService" />
+		<property name="model" ref="themeModel" />
+	</bean>
+	
+<!-- 	<bean id="themeService"
+		class="minibbs.model.service.ThemeServiceImpl">
+		<property name="dao" ref="themeDao" />
+	</bean>
+
+	
+	<bean id="themeModel" class="minibbs.model.entity.Theme"
+		scope="prototype" />
+	<bean id="themeAction" class="minibbs.action.ThemeAction"
+		scope="prototype">
+		<property name="service" ref="themeService" />
+		<property name="model" ref="themeModel" />
+	</bean> -->
+	
+<!-- 	<bean id="postDao" class="minibbs.model.dao.PostDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="replyDao" class="minibbs.model.dao.ReplyDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean> -->
+
+
+</beans>
