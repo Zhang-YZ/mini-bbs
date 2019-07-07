@@ -6,7 +6,7 @@
 		<id name="id" type="long">
 			<generator class="native" />
 		</id>
-		<property name="createTime" type="date" not-null="true" />
+		<property name="createTime"  not-null="true" />
 		<property name="content" type="string" length="300" not-null="true" />
 		<many-to-one name="user"></many-to-one>
 		<many-to-one name="post"></many-to-one>

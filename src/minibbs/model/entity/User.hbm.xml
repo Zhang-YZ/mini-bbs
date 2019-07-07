@@ -7,7 +7,7 @@
 			<generator class="native" />
 		</id>
 		<property name="password" type="string" not-null="true" length="50"/>
-		<property name="createTime" type="date" not-null="true" />
+		<property name="createTime" not-null="true" />
 		<property name="nickname" type="string" length="100" not-null="true" />
 		<property name="email" type="string" not-null="true" length="50"/>
 		<property name="salt"/>

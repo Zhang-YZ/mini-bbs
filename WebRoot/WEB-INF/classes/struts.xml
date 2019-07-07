@@ -4,16 +4,21 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.objectFactory" value="spring" />
 
 	<package name="default" extends="struts-default">
-	
-	<!-- 登录页面 -->
+
+		<action name="hasLogin" class="userAction" method="hasLogin">
+			<result name="success">/index.jsp</result>
+			<result name="input">/login.jsp</result>
+		</action>
+
+		<!-- 登录页面 -->
 		<action name="signin" class="userAction" method="signin">
 			<result name="success">/index.jsp</result>
 			<result name="input">/login.jsp</result>
 		</action>
-		<action name="reset"  class="userAction" method="reset">
+		<action name="reset" class="userAction" method="reset">
 			<result name="success"></result>
 			<result name="input"></result>
 		</action>
@@ -21,15 +26,18 @@
 			<result name="success">/login.jsp?signup=true</result>
 			<result name="input">/login.jsp?info=true</result>
 		</action>
-		
-	<!-- index -->
-		<action name="themetable" class="themeAction" method="getTimeDescThemes">
-		<result name="success">/index.jsp</result>
+
+		<!-- index -->
+		<action name="themetable" class="themeAction"
+			method="getTimeDescThemes">
 		</action>
-		
-		<action name="createTheme" class="themeAction" method="createTheme">
-		<result name="success">/index.jsp</result>
-		</action>
-		
+
+		<action name="createTheme" class="themeAction"
+			method="createTheme">
+			<result name="success">/index.jsp</result>
+			<result name="tologin">/login.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>	
+
 	</package>
 </struts>

@@ -54,12 +54,11 @@ public class UserAction extends BaseAction<User,UserService>{
 			this.addActionError(ex.getMessage());
 			return INPUT;
 		}
-    	System.out.println("================== ok");
     	return SUCCESS;
     }
 
     
-    public String hasLogin() {
+    public static String hasLogin() {
     	Map<String, Object> session = ActionContext.getContext().getSession();
     	User user = (User) session.get("user");
     	if(user==null) {

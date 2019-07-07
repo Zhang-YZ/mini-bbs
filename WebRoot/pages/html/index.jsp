@@ -58,7 +58,7 @@
 	<!--    </div>-->
 	<!--</nav>-->
 
-	<!--导航栏-->
+	<!--å¯¼èªæ -->
 	<nav
 		class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center shadow-sm mb-4 bg-primary">
 		<!--    <a href="/" class="navbar-brand d-flex w-50 mr-auto">Mini BBS</a>-->
@@ -71,9 +71,9 @@
 		<div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
 			<ul class="navbar-nav w-100 justify-content-center">
 				<li class="nav-item active mr-5"><a href="#" class="nav-link"><i
-						class="fa fa-home mr-2"></i><span>首页</span></a></li>
+						class="fa fa-home mr-2"></i><span>é¦é¡µ</span></a></li>
 				<li class="nav-item"><a href="#" class="nav-link"><i
-						class="fa fa-gears mr-2"></i><span>资源</span></a></li>
+						class="fa fa-gears mr-2"></i><span>èµæº</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
 				<li class="nav-item dropdown dropleft"><a href="#"
@@ -94,32 +94,34 @@
 			</ul>
 		</div>
 	</nav>
-	<!--工具栏-->
+	<!--å·¥å·æ -->
 	<div class="cell-selector mt-2 container btn-toolbar" role="toolbar">
 		<div class="category">
 			<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 				id="category-dropdown" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> 全部分类 </a>
+				aria-expanded="false"> å¨é¨åç±» </a>
 
 			<div class="dropdown-menu" aria-labelledby="category-dropdown">
-				<a class="dropdown-item" href="#">暂定</a> <a class="dropdown-item"
-					href="#">暂定</a> <a class="dropdown-item" href="#">暂定</a>
+				<a class="dropdown-item" href="#">æå®</a> <a
+					class="dropdown-item" href="#">æå®</a> <a class="dropdown-item"
+					href="#">æå®</a>
 			</div>
 		</div>
 		<div class="tags ml-2">
 			<a class="btn btn-secondary dropdown-toggle" href="#" role="button"
 				id="tag-dropdown" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> 全部标签 </a>
+				aria-expanded="false"> å¨é¨æ ç­¾ </a>
 
 			<div class="dropdown-menu" aria-labelledby="tag-dropdown">
-				<a class="dropdown-item" href="#">暂定</a> <a class="dropdown-item"
-					href="#">暂定</a> <a class="dropdown-item" href="#">暂定</a>
+				<a class="dropdown-item" href="#">æå®</a> <a
+					class="dropdown-item" href="#">æå®</a> <a class="dropdown-item"
+					href="#">æå®</a>
 			</div>
 		</div>
 
-		<button class="btn btn-primary ml-2">最新</button>
-		<button class="btn btn-primary ml-2">未读</button>
-		<button class="btn btn-primary ml-2">热门</button>
+		<button class="btn btn-primary ml-2">ææ°</button>
+		<button class="btn btn-primary ml-2">æªè¯»</button>
+		<button class="btn btn-primary ml-2">ç­é¨</button>
 
 		<button class="btn btn-info justify-content-end ml-auto"
 			id="addPostBtn" data-toggle="modal" data-target="#addPostModal">
@@ -132,23 +134,22 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">发表帖子</h5>
+					<h5 class="modal-title" id="exampleModalLabel">发表帖子</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-
 				<form action="createTheme" method="post">
 					<div class="modal-body">
 
 						<div class="form-group">
-							<label for="exampleFormControlInput1">帖子标题：</label> <input
+							<label for="exampleFormControlInput1">帖子标题</label> <input
 								name="title" type="text" class="form-control"
-								id="exampleFormControlInput1" placeholder="请输入标题">
+								id="exampleFormControlInput1" placeholder="è¯·è¾å¥æ é¢">
 						</div>
 						<div class="form-group">
-							<label for="exampleFormControlTextarea1">帖子内容：</label>
+							<label for="exampleFormControlTextarea1">帖子内容</label>
 							<textarea name="content" class="form-control"
 								id="exampleFormControlTextarea1" rows="5"></textarea>
 						</div>
@@ -164,32 +165,36 @@
 			</div>
 		</div>
 	</div>
+	<%-- <h1>==============</h1>
 
 
+	<s:action name="testaction" executeResult="true">
+      Output from Hellaod:  <br />
+	</s:action>
+	<s:iterator value="#attr.names">
+		<s:property />
+		<br />
+	</s:iterator>
+	<h1>==============</h1> --%>
 	<table class="table container main-contents mt-4">
 		<thead>
 			<tr>
-				<th scope="col">热度</th>
-				<th scope="col">主题</th>
-				<th scope="col">回复数目</th>
-				<th scope="col">活动时间</th>
+				<th scope="col">ç­åº¦</th>
+				<th scope="col">ä¸»é¢</th>
+				<th scope="col">åå¤æ°ç®</th>
+				<th scope="col">æ´»å¨æ¶é´</th>
 			</tr>
 		</thead>
 		<s:action name="themetable" executeResult="false"></s:action>
 		<tbody>
-			<s:iterator value="#attr.themetable">
-				<tr>
-					<th scope="row"><s:property value="heat" /></th>
-
-					<td><s:form action="gotoDetail" method="post">
-							<s:submit name="<s:property value="id" />">
-								<s:property value="title" />
-							</s:submit>
-						</s:form></td>
-					<td><s:property value="heat" /></td>
-					<td><s:property value="createTime" /></td>
-				</tr>
-			</s:iterator>
+		<s:iterator value="#attr.themetable">
+			<tr>
+				<th scope="row"><s:property value="heat"/></th>
+				<td><a href=""><s:property value="title"/> </a></td>
+				<td><s:property value="heat"/></td>
+				<td><s:property value="createTime"/></td>
+			</tr>
+		</s:iterator>
 		</tbody>
 	</table>
 

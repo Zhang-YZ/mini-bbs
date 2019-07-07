@@ -28,11 +28,11 @@
 </head>
 <body class="bg-primary">
 	<div id="logreg-forms" class="bg-white rounded p-3">
-<%-- 		<%
+		<%-- 		<%
 			String info = request.getParameter("info");
 			if(info)
 		%> --%>
-		<form action="signin" class="form-signin">
+		<form action="signin" class="form-signin" method="post">
 			<h1 class="h3 mb-3 font-weight-normal text-primary"
 				style="text-align: center">Mini BBS</h1>
 			<input name="email" type="email" id="inputEmail"
