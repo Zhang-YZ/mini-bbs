@@ -33,42 +33,55 @@
 	<bean id="themeDao" class="minibbs.model.dao.ThemeDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="themeService"
 		class="minibbs.model.service.ThemeServiceImpl">
 		<property name="dao" ref="themeDao" />
 	</bean>
 
-	<!-- UserAction 用户操作的控制器对象 -->
 	<bean id="themeModel" class="minibbs.model.entity.Theme"
 		scope="prototype" />
 	<bean id="themeAction" class="minibbs.action.ThemeAction"
 		scope="prototype">
 		<property name="service" ref="themeService" />
 		<property name="model" ref="themeModel" />
-	</bean>
-	
-<!-- 	<bean id="themeService"
-		class="minibbs.model.service.ThemeServiceImpl">
-		<property name="dao" ref="themeDao" />
 	</bean>
 
-	
-	<bean id="themeModel" class="minibbs.model.entity.Theme"
-		scope="prototype" />
-	<bean id="themeAction" class="minibbs.action.ThemeAction"
-		scope="prototype">
-		<property name="service" ref="themeService" />
-		<property name="model" ref="themeModel" />
-	</bean> -->
-	
-<!-- 	<bean id="postDao" class="minibbs.model.dao.PostDaoImpl">
+
+	<bean id="postDao" class="minibbs.model.dao.PostDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
+	<bean id="postService"
+		class="minibbs.model.service.PostServiceImpl">
+		<property name="dao" ref="postDao" />
+	</bean>
+
+	<bean id="postModel" class="minibbs.model.entity.Post"
+		scope="prototype" />
+	<bean id="postAction" class="minibbs.action.PostAction"
+		scope="prototype">
+		<property name="service" ref="postService" />
+		<property name="model" ref="postModel" />
+	</bean>
+
+
 	<bean id="replyDao" class="minibbs.model.dao.ReplyDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean> -->
+	</bean>
+
+	<bean id="replyService"
+		class="minibbs.model.service.ReplyServiceImpl">
+		<property name="dao" ref="replyDao" />
+	</bean>
+
+	<bean id="replyModel" class="minibbs.model.entity.Reply"
+		scope="prototype" />
+	<bean id="replyAction" class="minibbs.action.ReplyAction"
+		scope="prototype">
+		<property name="service" ref="replyService" />
+		<property name="model" ref="replyModel" />
+	</bean>
 
 
 </beans>

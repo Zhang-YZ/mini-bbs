@@ -7,6 +7,16 @@ public class Post extends BaseEntity{
 		// TODO Auto-generated constructor stub
 	}
 
+    public Post(String content) {
+    	this();
+    	this.content=content;
+    }
+    
+    public Post(String content,Theme theme) {
+    	this();
+    	this.content=content;
+    	this.theme=theme;
+    };
 //    public Post(Theme theme,String content) {
 //    	this();
 //    	this.content=content;

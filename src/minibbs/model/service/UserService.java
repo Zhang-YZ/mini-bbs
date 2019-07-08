@@ -9,4 +9,6 @@ public interface UserService{
 	public void register(User user);
 	
 	public boolean checkEmail(String email);
+	
+	public User getUserById(long id);
 }

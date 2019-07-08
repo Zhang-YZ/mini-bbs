@@ -38,4 +38,11 @@ public class UserServiceImpl extends BaseService<User> implements UserService{
 		return false;
 	}
 
+	@Override
+	public User getUserById(long id) {
+		// TODO Auto-generated method stub
+		User user = this.getDao().getSingle("id", id);
+		return user;
+	}
+
 }

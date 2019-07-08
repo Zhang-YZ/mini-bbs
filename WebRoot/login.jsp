@@ -22,8 +22,8 @@
 	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/login.css">
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="pages/css/login.css">
+<link rel="stylesheet" href="pages/css/main.css">
 <title>Bootstrap 4 Login/Register Form</title>
 </head>
 <body class="bg-primary">

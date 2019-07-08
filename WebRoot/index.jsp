@@ -6,7 +6,7 @@
 
 
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="pages/css/main.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -181,11 +181,7 @@
 				<tr>
 					<th scope="row"><s:property value="heat" /></th>
 
-					<td><s:form action="gotoDetail" method="post">
-							<s:submit name="<s:property value="id" />">
-								<s:property value="title" />
-							</s:submit>
-						</s:form></td>
+					<td><a href="detail.jsp?id=<s:property value="id" />">a<s:property value="title" /></a></td>
 					<td><s:property value="heat" /></td>
 					<td><s:property value="createTime" /></td>
 				</tr>

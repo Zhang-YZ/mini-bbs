@@ -25,6 +25,14 @@ public class ThemeServiceImpl extends BaseService<Theme> implements ThemeService
 		// TODO Auto-generated method stub
 		this.getDao().save(theme);
 	}
+
+	@Override
+	public Theme getThemeById(long id) {
+		// TODO Auto-generated method stub
+		Theme theme = this.getDao().getSingle("id", id);
+		return theme;
+	}
+	
 	
 	
 	

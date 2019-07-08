@@ -39,5 +39,15 @@
 			<result name="input">/index.jsp</result>
 		</action>	
 
+		<action name="getTheme" class="themeAction"
+		method="getTheme">
+		</action>
+		
+		<action name="getPosts" class="postAction" method="getPostsByTheme">
+		</action>
+		
+		<action name="addPost" class="postAction" method="addPost">
+		</action>
+
 	</package>
 </struts>

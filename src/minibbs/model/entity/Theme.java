@@ -7,6 +7,10 @@ public class Theme extends BaseEntity {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Theme(long id) {
+		super(id);
+	}
+	
 	public Theme(String title,String content) {
 		this();
 		this.title=title;
