@@ -5,7 +5,10 @@ public class Reply extends BaseEntity {
 		super(0);
 		// TODO Auto-generated constructor stub
 	}
-
+	public Reply(String content) {
+		this();
+		this.content=content;
+	}
 	private String content;
 	private User user;
 	private Post post;

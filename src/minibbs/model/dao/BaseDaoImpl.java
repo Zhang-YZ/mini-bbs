@@ -75,15 +75,26 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 	
 	
-	@SuppressWarnings({ "unchecked" })
-	@Override
-	public List<TEntity> findBy(String propertyName, Object propertyValue) {
+	public List<TEntity> findBy(String propertyName, Object propertyValue,String cond) {
+		if(cond!=null) {
+			cond = " order by "+cond;
+		}
+		else {
+			cond="";
+		}
 		String queryString = "from " + entityClass.getSimpleName() + " e ";
-		queryString += "where e." + propertyName + "=:propertyValue";
+		queryString += "where e." + propertyName + "=:propertyValue"+cond;
 		Query query = this.getSession().createQuery(queryString);
 		List<TEntity> entities = query.setParameter("propertyValue", propertyValue).list();
 		return entities;
 	}
+	
+	@Override
+	public List<TEntity> findBy(String propertyName, Object propertyValue) {
+		return findBy(propertyName, propertyValue,null);
+	}
+	
+
 
 	@SuppressWarnings("unchecked")
 	@Override

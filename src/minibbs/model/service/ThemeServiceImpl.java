@@ -3,6 +3,7 @@ package minibbs.model.service;
 import java.util.List;
 
 import minibbs.model.entity.Theme;
+import minibbs.model.entity.User;
 
 
 public class ThemeServiceImpl extends BaseService<Theme> implements ThemeService{
@@ -31,6 +32,12 @@ public class ThemeServiceImpl extends BaseService<Theme> implements ThemeService
 		// TODO Auto-generated method stub
 		Theme theme = this.getDao().getSingle("id", id);
 		return theme;
+	}
+
+	@Override
+	public List<Theme> getThemesByUserDescTime(User user) {
+		// TODO Auto-generated method stub
+		return this.getDao().findBy("user.id", user.getId(),"createTime desc");
 	}
 	
 	

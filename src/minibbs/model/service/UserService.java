@@ -11,4 +11,6 @@ public interface UserService{
 	public boolean checkEmail(String email);
 	
 	public User getUserById(long id);
+	
+	public User getUserByEmail(String email);
 }

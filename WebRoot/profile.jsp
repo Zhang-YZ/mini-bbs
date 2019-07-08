@@ -4,10 +4,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="pages/css/main.css">
+    <link rel="stylesheet" href="pages/css/profile.css">
     <script src="https://kit.fontawesome.com/79b7c3f541.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="pages/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -26,10 +26,10 @@
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
                     <div class="profile-usertitle-name">
-                        Marcus Doe
+                        <s:property value="tempUser.nickname"></s:property>
                     </div>
                     <div class="profile-usertitle-job">
-                        Developer
+                        <s:property value="tempUser.email"></s:property>
                     </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
@@ -45,7 +45,7 @@
                         <li class="active">
                             <a href="#">
                                 <i class="glyphicon glyphicon-home"></i>
-                                发帖记录 </a>
+                                我的主题 </a>
                         </li>
                         <li>
                             <a href="#">
@@ -72,29 +72,19 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">发帖日期</th>
-                        <th scope="col">帖子主题</th>
+                        <th scope="col">日期</th>
+                        <th scope="col">我的主题</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <s:iterator value="themetable">
                     <tr>
-                        <th scope="row">2019年12月21日</th>
+                        <th scope="row"><s:property value="createTime"></s:property></th>
                         <td>
-                            <a href="detail.html">为什么我放弃emacs了?</a>
+                            <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property value="title"></s:property></a>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2019年12月21日</th>
-                        <td>
-                            <a href="detail.html">awesome-tab 与 hydra 结合，清洁界面并减少按键记忆负担</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2019年12月21日</th>
-                        <td>
-                            <a href="index.html">求一款适合阅读org source code 的主题</a>
-                        </td>
-                    </tr>
+                    </s:iterator>
                     </tbody>
                 </table>
             </div>

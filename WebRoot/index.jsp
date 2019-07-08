@@ -145,7 +145,7 @@
 				<tr>
 					<th scope="row"><s:property value="heat" /></th>
 					<td>
-						<form action="gotodetail">
+						<form action="gotoDetail">
 							<input type="hidden" name="themeId" value="<s:property value="id" />" />
 							<%-- <s:submit key="<s:property value="title" />"/> --%>
 							<input type="submit" value="<s:property value="title" />"/>

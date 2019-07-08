@@ -42,6 +42,7 @@ public interface BaseDao<TEntity> {
 	 */
 	List<TEntity> findAll();
 	List<TEntity> findAll(String cond);
+	
 	/**
 	 * find entities with the specified property
 	 * @param propertyName The name of the property
@@ -49,6 +50,8 @@ public interface BaseDao<TEntity> {
 	 * @return the List of entities specialized by the property
 	 */
 	List<TEntity> findBy(String propertyName, Object propertyValue);
+	List<TEntity> findBy(String propertyName, Object propertyValue,String cond);
+	
 	
 	
 }

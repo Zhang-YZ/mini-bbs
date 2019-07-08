@@ -22,34 +22,37 @@
 <title>Title</title>
 <!--</head>-->
 <body>
-	<s:include value="navbar.jsp"/>
-	
+	<s:include value="navbar.jsp" />
+
 	<div class="comment-title mt-4">
 		<h2 class="text-center text-grey">
-				<s:property value="poststheme.title"></s:property>
+			<s:property value="poststheme.title"></s:property>
 		</h2>
-
 		<div class="archive-bar text-center mt-3">
 			<button class="btn btn-sm btn-primary">
-				<%-- <s:property value="#attr.author"></s:property> --%>
+				<s:property value="poststheme.user.nickname"></s:property>
+				(<a
+					href="gotoProfile?tempUserId=<s:property value="poststheme.user.id"></s:property>"
+					class="text-white"><s:property value="poststheme.user.email"></s:property></a>)
 			</button>
 			<button class="btn btn-sm btn-info">
-				<%-- <s:property value="#attr.theme.createTime"></s:property> --%>
+				<s:property value="poststheme.createTime"></s:property>
 			</button>
 		</div>
 
 
 		<div class="container comment-block mt-4">
-
-			<%-- <div class="comments mt-4">
+			<div class="comments mt-4">
 				<div class="contents">
 					<div class="text-center">
-						<s:property value="#attr.theme.content"></s:property>
+						<s:property value="poststheme.content"></s:property>
 					</div>
 				</div>
+
+
 				<table class="table mt-5">
 					<tbody>
-						<s:iterator value="#attr.posts">
+						<s:iterator value="posts" status="L">
 							<tr>
 								<th>
 									<div class="user-avatar">
@@ -60,15 +63,22 @@
 								<td>
 									<div class="contents">
 										<div class="info row text-grey">
-											<div class="col-4"><s:property value="user.nickname"></s:property></div>
+											<div class="col-4">
+												<s:property value="user.nickname"></s:property>
+												(<a
+													href="gotoProfile?tempUserId=<s:property value="user.id"></s:property>"
+													><s:property value="user.email"></s:property></a>)
+											</div>
 											<div class="col-6"></div>
-											<div class="col-2"><s:property value="createTime"></s:property></div>
+											<div class="col-2">
+												<s:property value="createTime"></s:property>
+											</div>
 										</div>
 										<div class="mt-2">
 											<s:property value="content"></s:property>
 										</div>
-										
-										
+
+
 										<div class="mt-2 contents-tool-bar row">
 											<div class="col-8"></div>
 											<div class="col-1">
@@ -85,22 +95,44 @@
 											</div>
 											<div class="col-2">
 												<button class="btn" type="button" data-toggle="collapse"
-													data-target="#reply-collapse" aria-expanded="false"
-													aria-controls="reply-collapse">
-													> <i class="fas fa-reply"> </i> 回复
+													data-target="#reply-collapse<s:property value="#L.index+1"></s:property>"
+													aria-expanded="false" aria-controls="reply-collapse">
+													<i class="fas fa-reply"> </i> 回复
 												</button>
 											</div>
 										</div>
-										<div class="reply-section collapse mt-2" id="reply-collapse">
-											<div class="card card-body">
-												<h5 class="card-title">xuuexu</h5>
-												<p class="card-text">层主保重！</p>
-											</div>
-											<div class="form-group mt-1">
-												<input class="form-control mt-1">
-												<button type="submit"
-													class="btn btn-primary mt-1 float-right">回复</button>
-											</div>
+										<div class="reply-section collapse mt-2"
+											id="reply-collapse<s:property value="#L.index+1"></s:property>">
+
+											<s:iterator value="replies[#L.index]">
+												<div class="card card-body">
+													<h5 class="card-title">
+														<s:property value="user.nickname"></s:property>
+														(<a
+													href="gotoProfile?tempUserId=<s:property value="user.id"></s:property>"
+													><s:property value="user.email"></s:property></a>)&nbsp;&nbsp;&nbsp;&nbsp;
+														<s:property value="createTime"></s:property>
+													</h5>
+													<p class="card-text">
+														<s:property value="content"></s:property>
+													</p>
+												</div>
+											</s:iterator>
+											<form action="getPostToReply">
+												<div class="input-group mt-2 mb-3">
+
+													<input name="tempPostId" type="hidden"
+														value="<s:property value="posts[#L.index].id"></s:property>">
+													<input name="content" type="text" class="form-control"
+														placeholder="请输入回复内容" aria-label="Recipient's username"
+														aria-describedby="button-addon2">
+													<div class="input-group-append">
+														<button class="btn btn-outline-primary" type="submit"
+															id="button-addon2">回复</button>
+													</div>
+
+												</div>
+											</form>
 										</div>
 									</div>
 								</td>
@@ -109,15 +141,16 @@
 					</tbody>
 				</table>
 			</div>
-			
-			 --%>
+
+
 			<hr>
+
 
 			<form action="addPost" method="post">
 				<div class="create-new-comment form-group">
-					<textarea name="content" class="form-control send-comment" rows="4">
-					</textarea>
-					<input type="hidden" name="themeid" value="<s" />
+					<textarea name="content" class="form-control send-comment" rows="4"></textarea>
+					<input type="hidden" name="poststhemeid"
+						value="<s:property value="poststheme.id"></s:property>" />
 					<div class="row mt-2 ">
 						<div class="col-11"></div>
 						<div class="col-1">
@@ -128,5 +161,6 @@
 			</form>
 
 		</div>
+	</div>
 </body>
 </html>

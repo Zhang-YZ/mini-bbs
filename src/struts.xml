@@ -8,15 +8,10 @@
 
 	<package name="default" extends="struts-default">
 
-		<action name="hasLogin" class="userAction" method="hasLogin">
-			<result name="success">/index.jsp</result>
-			<result name="input">/login.jsp</result>
-		</action>
-
 		<!-- 登录页面 -->
 		<action name="signin" class="userAction" method="signin">
 			<result name="success" type="chain">
-				<param name="actionName">getThemeTable</param> 
+				<param name="actionName">getThemeTable</param>
 			</result>
 			<result name="input">/login.jsp</result>
 		</action>
@@ -28,6 +23,10 @@
 			<result name="success">/login.jsp?signup=true</result>
 			<result name="input">/login.jsp?info=true</result>
 		</action>
+		<action name="signout" class="userAction" method="signout">
+			<result name="success">/login.jsp</result>
+		</action>
+
 
 
 
@@ -45,26 +44,133 @@
 			</result>
 			<result name="tologin">/login.jsp</result>
 			<result name="input">/index.jsp</result>
-		</action>	
+		</action>
 
 
 
 
-		<action name="getTheme" class="themeAction" method="getTheme">
+		<action name="getRepliesToDetail" class="replyAction" method="getRepliesToDetail">
+			<result name="success">/detail.jsp</result>
 		</action>
 		
-		<action name="getPosts" class="postAction" method="getPostsByTheme">
-		<result name="success">/detail.jsp</result>
+		<action name="getPostsToDetail" class="postAction"
+			method="getPostsToDetail">
+			<result name="success" type="chain">
+				<param name="actionName">getRepliesToDetail</param>
+			</result>
 		</action>
-		
+
+		<action name="gotoDetail" class="themeAction"
+			method="gotoDetail">
+			<result name="success" type="chain">
+				<param name="actionName">getPostsToDetail</param>
+			</result>
+		</action>
+
 		<action name="addPost" class="postAction" method="addPost">
+			<result name="tologin">/login.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getPostsToDetail</param>
+			</result>
+			<result name="input">/error.jsp</result>
 		</action>
 		
-		<action name="gotodetail" class="themeAction" method="gotoDetail">
-		<result name="success" type="chain">
-			<param name="actionName">getPosts</param>
-		</result>
+		<action name="addReply" class="replyAction" method="addReply">
+			<result name="tologin">/login.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getPostsToDetail</param>
+			</result>
+			<result name="input">/error.jsp</result>
+		</action>
+		
+		<action name="getPostToReply" class="postAction" method="getPostToReply">
+			<result name="success" type="chain">
+				<param name="actionName">addReply</param>
+			</result>
+		</action>
+		
+		
+		
+		
+		<action name="gotoSelfProfile" class = "userAction" method="gotoSelfProfile">
+			<result name="input">/login.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getThemesToProfile</param>
+			</result>
+		</action>
+		
+		<action name="getThemesToProfile" class="themeAction"
+			method="getThemesToProfile">
+			<result name="success" type="chain">
+				<param name="actionName">getPostsToProfile</param>
+			</result>
+		</action>
+		
+		<action name="getPostsToProfile" class="postAction"
+			method="getPostsToProfile">
+			<!-- <result name="success" type="chain">
+				<param name="actionName">getRepliesToProfile</param>
+			</result> -->
+			<result name="success">/profile.jsp</result>
+		</action>
+		
+		<action name="gotoProfile" class = "userAction" method="gotoProfile">
+			<result name="input">/login.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getThemesToProfile</param>
+			</result>
+		</action>
+		
+		<action name="search" class = "userAction" method="search">
+			<result name="input">/login.jsp</result>
+			<result name="none" type="chain">
+				<param name="actionName">getThemeTable</param>
+			</result>
+			<result name="isuser" type="chain">
+				<param name="actionName">getThemesToProfile</param>
+			</result>
+			<result name="istheme" type="chain">
+				<param name="actionName">searchTheme</param>
+			</result>
+		</action>
+		
+<!-- 		<action name="searchTheme" class="themeAction" method="searchTheme">
+			<result name=""
+		</action> -->
+
+		
+		
+		
+		
+
+		
+		
+		
+		
+<!-- 		<action name="addPostGetTheme" class="themeAction" method="addPostGetTheme">
+			<result name="success" type="chain">
+				<param name="actionName">addPost</param>
+			</result>
+		</action> -->
+
+<!-- 		<action name="testPost" class="postAction" method="testPost">
+			<result name="success" type="chain">
+				<param name="actionName">testReply</param>
+			</result>
+			
 		</action>
 
+		<action name="testReply" class="replyAction" method="testReply">
+			<result name="success" >/result.jsp</result>
+			
+		</action> -->
+		
+<!-- 		<action name="test2" class="postAction" method="test2">
+			<result name="success">/result.jsp</result>
+		</action> -->
+		
+<!-- 		<action name="testhref" class="userAction" method="testhref">
+			<result name="success">/result.jsp</result>
+		</action> -->
 	</package>
 </struts>

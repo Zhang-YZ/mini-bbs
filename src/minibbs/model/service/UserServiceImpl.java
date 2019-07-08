@@ -45,4 +45,10 @@ public class UserServiceImpl extends BaseService<User> implements UserService{
 		return user;
 	}
 
+	@Override
+	public User getUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		return this.getDao().getSingle("email", email);
+	}
+
 }
