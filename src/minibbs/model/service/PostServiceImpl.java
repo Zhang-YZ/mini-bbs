@@ -10,7 +10,9 @@ public class PostServiceImpl extends BaseService<Post> implements PostService{
 	@Override
 	public List<Post> getPostByTheme(Theme theme) {
 		// TODO Auto-generated method stub
-		return this.getDao().findBy("theme", theme.getId());
+		List<Post> posts =  this.getDao().findBy("theme.id", theme.getId());
+		System.out.println("=============== theme okok");
+		return posts;
 	}
 
 	@Override

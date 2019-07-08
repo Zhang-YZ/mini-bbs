@@ -3,7 +3,7 @@ package minibbs.model.entity;
 public class Post extends BaseEntity{
     public Post() {
 		super(0);
-		this.like=0;
+		this.favor=0;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -26,7 +26,7 @@ public class Post extends BaseEntity{
 	private User user;
     private Theme theme;
     private String content;
-    private int like;
+    private int favor;
 	
     
 	public User getUser() {
@@ -58,14 +58,12 @@ public class Post extends BaseEntity{
 		this.content = content;
 	}
 
-
-	public int getLike() {
-		return like;
+	public int getFavor() {
+		return favor;
 	}
 
-
-	public void setLike(int like) {
-		this.like = like;
+	public void setFavor(int favor) {
+		this.favor = favor;
 	}
 	
 }

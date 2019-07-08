@@ -15,10 +15,15 @@ import minibbs.model.service.PostService;
 public class PostAction extends BaseAction<Post,PostService>{
 	private static final long serialVersionUID = 1L;
 	
-	public void getPostsByTheme() {
-		Theme theme = (Theme) ServletActionContext.getRequest().getAttribute("theme");
-		List<Post> posts = this.getService().getPostByTheme(theme);
-		ServletActionContext.getRequest().setAttribute("posts", posts);
+	private Theme poststheme;
+	private List<Post> posts;
+	
+	public String getPostsByTheme() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		poststheme = (Theme)session.get("nowtheme");
+		posts = this.getService().getPostByTheme(poststheme);
+		System.out.println("===========getpostbythemeok");
+		return SUCCESS;
 	}
 	
 	
@@ -36,6 +41,29 @@ public class PostAction extends BaseAction<Post,PostService>{
 		this.getService().addPost(post);
 		System.out.println("================== addpost() end");
 //		return SUCCESS;
+	}
+
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
+	}
+
+
+
+	public Theme getPoststheme() {
+		return poststheme;
+	}
+
+
+
+	public void setPoststheme(Theme poststheme) {
+		this.poststheme = poststheme;
 	}
 
 }

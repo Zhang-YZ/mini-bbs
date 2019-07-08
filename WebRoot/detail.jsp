@@ -36,28 +36,18 @@
 					class="sr-only">(current)</span></a></li>
 		</ul>
 	</nav>
-	<%
-		long id = Long.parseLong(request.getParameter("id"));
-	%>
-	<s:action name="getTheme" executeResult="false">
-		<s:param name="id"><%=id%></s:param>
-	</s:action>
-
-	<s:action name="getPosts" executeResult="false">
-		<s:param name="theme"><s:property value="#attr.theme"/></s:param>
-	</s:action>
-
+	
 	<div class="comment-title mt-4">
 		<h2 class="text-center text-grey">
-			<s:property value="#attr.theme.title"></s:property>
+				<s:property value="poststheme.title"></s:property>
 		</h2>
 
 		<div class="archive-bar text-center mt-3">
 			<button class="btn btn-sm btn-primary">
-				<s:property value="#attr.theme.user.nickname"></s:property>
+				<%-- <s:property value="#attr.author"></s:property> --%>
 			</button>
 			<button class="btn btn-sm btn-info">
-				<s:property value="#attr.theme.createTime"></s:property>
+				<%-- <s:property value="#attr.theme.createTime"></s:property> --%>
 			</button>
 		</div>
 
@@ -135,13 +125,13 @@
 			
 			 --%>
 			<hr>
-			
-			
-			<s:form action="addPost" method="post"><%-- 
-				<s:param name="theme"><s:property value="#attr.theme"></s:property></s:param> --%>
+
+
+			<form action="addPost" method="post">
 				<div class="create-new-comment form-group">
 					<textarea name="content" class="form-control send-comment" rows="4">
-        </textarea>
+					</textarea>
+					<input type="hidden" name="themeid" value="<s" />
 					<div class="row mt-2 ">
 						<div class="col-11"></div>
 						<div class="col-1">
@@ -149,7 +139,7 @@
 						</div>
 					</div>
 				</div>
-			</s:form>
+			</form>
 
 		</div>
 </body>

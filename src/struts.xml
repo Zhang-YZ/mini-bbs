@@ -15,7 +15,9 @@
 
 		<!-- 登录页面 -->
 		<action name="signin" class="userAction" method="signin">
-			<result name="success">/index.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getThemeTable</param> 
+			</result>
 			<result name="input">/login.jsp</result>
 		</action>
 		<action name="reset" class="userAction" method="reset">
@@ -27,26 +29,41 @@
 			<result name="input">/login.jsp?info=true</result>
 		</action>
 
+
+
+
 		<!-- index -->
-		<action name="themetable" class="themeAction"
+		<action name="getThemeTable" class="themeAction"
 			method="getTimeDescThemes">
+			<result name="success">/index.jsp</result>
 		</action>
 
 		<action name="createTheme" class="themeAction"
 			method="createTheme">
-			<result name="success">/index.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">getThemeTable</param>
+			</result>
 			<result name="tologin">/login.jsp</result>
 			<result name="input">/index.jsp</result>
 		</action>	
 
-		<action name="getTheme" class="themeAction"
-		method="getTheme">
+
+
+
+		<action name="getTheme" class="themeAction" method="getTheme">
 		</action>
 		
 		<action name="getPosts" class="postAction" method="getPostsByTheme">
+		<result name="success">/detail.jsp</result>
 		</action>
 		
 		<action name="addPost" class="postAction" method="addPost">
+		</action>
+		
+		<action name="gotodetail" class="themeAction" method="gotoDetail">
+		<result name="success" type="chain">
+			<param name="actionName">getPosts</param>
+		</result>
 		</action>
 
 	</package>

@@ -175,13 +175,17 @@
 				<th scope="col">活动时间</th>
 			</tr>
 		</thead>
-		<s:action name="themetable" executeResult="false"></s:action>
 		<tbody>
-			<s:iterator value="#attr.themetable">
+			<s:iterator value="themetable">
 				<tr>
 					<th scope="row"><s:property value="heat" /></th>
-
-					<td><a href="detail.jsp?id=<s:property value="id" />">a<s:property value="title" /></a></td>
+					<td>
+						<form action="gotodetail">
+							<input type="hidden" name="themeId" value="<s:property value="id" />" />
+							<%-- <s:submit key="<s:property value="title" />"/> --%>
+							<input type="submit" value="<s:property value="title" />"/>
+						</form>
+					</td>
 					<td><s:property value="heat" /></td>
 					<td><s:property value="createTime" /></td>
 				</tr>
@@ -198,5 +202,5 @@
 	// });
 </script>
 
-<script src="../js/main.js"></script>
+<script src="pages/js/main.js"></script>
 </html>
