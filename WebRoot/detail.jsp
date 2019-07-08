@@ -22,20 +22,7 @@
 <title>Title</title>
 <!--</head>-->
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-info">
-		<!--    <a class="navbar-brand" href="#">mini bbs</a>-->
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active"><a class="nav-link" href="#">Home
-					<span class="sr-only">(current)</span>
-			</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Book <span
-					class="sr-only">(current)</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="#">User <span
-					class="sr-only">(current)</span></a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Rank <span
-					class="sr-only">(current)</span></a></li>
-		</ul>
-	</nav>
+	<s:include value="navbar.jsp"/>
 	
 	<div class="comment-title mt-4">
 		<h2 class="text-center text-grey">
@@ -125,7 +112,6 @@
 			
 			 --%>
 			<hr>
-
 
 			<form action="addPost" method="post">
 				<div class="create-new-comment form-group">
