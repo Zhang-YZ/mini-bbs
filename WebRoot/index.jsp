@@ -7,56 +7,24 @@
 
 <meta charset="UTF-8">
 <link rel="stylesheet" href="pages/css/main.css">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-	crossorigin="anonymous"></script>
+<script src="assets/jquery-3.2.1.slim.min.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+	src="assets/popper.min.js"
 	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	crossorigin="anonymous"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+	src="assets/bootstrap.min.js"
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
-<link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round"
+<link href="assets/css.css"
 	rel="stylesheet">
 <link rel="stylesheet"
-	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	href="assets/icon.css">
 <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	href="assets/font-awesome.min.css">
 <title>Title</title>
 </head>
 <body>
-
-
-	<!--<nav class="navbar navbar-inverse navbar-expand-lg navbar-dark shadow mb-4">-->
-	<!--    <div class="navbar-header d-flex col">-->
-	<!--        <a class="navbar-brand" href="#"><i class="fa fa-cube"></i>Mini<b>BBS</b></a>-->
-	<!--        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle navbar-toggler ml-auto">-->
-	<!--            <span class="navbar-toggler-icon"></span>-->
-	<!--            <span class="icon-bar"></span>-->
-	<!--            <span class="icon-bar"></span>-->
-	<!--            <span class="icon-bar"></span>-->
-	<!--        </button>-->
-	<!--    </div>-->
-	<!--    &lt;!&ndash; Collection of nav links, forms, and other content for toggling &ndash;&gt;-->
-	<!--    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">-->
-	<!--        <ul class="nav navbar-nav nav-right ml-auto">-->
-	<!--            <li class="nav-item active"><a href="#" class="nav-link"><i class="fa fa-home"></i><span>Home</span></a></li>-->
-	<!--            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-gears"></i><span>Projects</span></a></li>-->
-	<!--            <li class="nav-item dropdown dropleft">-->
-	<!--                <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle user-action"><img src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4" class="avatar" alt="Avatar"><b class="caret"></b></a>-->
-	<!--                <ul class="dropdown-menu">-->
-	<!--                    <li><a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a></li>-->
-	<!--                    <li><a href="#" class="dropdown-item"><i class="fa fa-calendar-o"></i> Calendar</a></li>-->
-	<!--                    <li><a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a></li>-->
-	<!--                    <li class="divider dropdown-divider"></li>-->
-	<!--                    <li><a href="#" class="dropdown-item"><i class="material-icons">&#xE8AC;</i> Logout</a></li>-->
-	<!--                </ul>-->
-	<!--            </li>-->
-	<!--        </ul>-->
-	<!--    </div>-->
-	<!--</nav>-->
 
 	<s:include value="navbar.jsp"/>
 	<!--工具栏-->

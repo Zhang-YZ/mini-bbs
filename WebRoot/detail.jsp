@@ -6,17 +6,17 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="pages/css/main.css">
     <link rel="stylesheet" href="pages/css/detail.css">
-    <script src="https://kit.fontawesome.com/79b7c3f541.js"></script>
+    <script src="assets/fontawesomekit.js"></script>
     <script src="pages/js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    <script src="assets/jquery-3.2.1.slim.min.js"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
     <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            src="assets/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
     <script
-            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            src="assets/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <title>Title</title>
@@ -92,7 +92,7 @@
 
                 <div class="all-replies">
                     <s:iterator value="posts" status="L">
-                        <div class="row">
+                        <div class="row mb-3">
                                 <div class="col-1">
                                     <img width="45" height="45" src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
                                 </div>
@@ -133,6 +133,7 @@
                             .reply-section{
                                 margin-left: 8%;
                                 font-size: smaller;
+                                width: 100%;
                             }
                         </style>
                         <div class="row">
@@ -169,13 +170,13 @@
                                     </div>
                                 </s:iterator>
 
-                                <form action="getPostToReply">
+                                <form autocomplete="off" action="getPostToReply">
                                     <div class="input-group mt-2 mb-3">
 
                                         <input name="tempPostId" type="hidden"
                                                value="<s:property value="posts[#L.index].id"></s:property>">
                                         <input name="content" type="text" class="form-control"
-                                               placeholder="请输入回复内容" aria-label="Recipient's username"
+                                               placeholder="请输入回复内容.........." aria-label="Recipient's username"
                                                aria-describedby="button-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-primary" type="submit"
@@ -187,11 +188,12 @@
                                 </form>
                             </div>
                         </div>
+                        <hr>
                     </s:iterator>
                 </div>
             </div>
             <hr>
-            <form action="addPost" method="post">
+            <form autocomplete="off" action="addPost" method="post">
                 <div class="create-new-comment form-group">
                     <textarea name="content" class="form-control send-comment" rows="4"></textarea>
                     <input type="hidden" name="poststhemeid"

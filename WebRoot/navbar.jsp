@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="https://kit.fontawesome.com/79b7c3f541.js"></script>
+<script src="assets/fontawesomekit.js"></script>
 <!DOCTYPE html>
 <nav
 	class="navbar navbar-dark navbar-expand-md bg-faded justify-content-center bg-primary">
@@ -36,7 +36,7 @@
 	
 	
 	<div class="container h-100">
-	<form action="search">
+	<form autocomplete="off" action="search">
 		<div class="d-flex justify-content-center h-100">
 			<div class="searchbar">
 

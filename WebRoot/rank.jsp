@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="pages/css/main.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="assets/font-awesome.min.css" rel="stylesheet">
 <title>Insert title here</title>
 </head>
 <s:include value="navbar.jsp"/>
