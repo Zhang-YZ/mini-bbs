@@ -47,4 +47,12 @@ public class ReplyServiceImpl extends BaseService<Reply> implements ReplyService
 		
 	}
 
+	@Override
+	public void deleteRepliesByPosts(List<Post> posts) {
+		// TODO Auto-generated method stub
+		for(Post post:posts) {
+			deleteRepliesByPost(post);
+		}
+	}
+
 }

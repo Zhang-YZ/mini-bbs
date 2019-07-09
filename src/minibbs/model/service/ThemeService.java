@@ -15,5 +15,5 @@ public interface ThemeService{
 	public Theme getThemeById(long id);
 	public List<Theme> getThemesByUserDescTime(User user);
 	public List<Theme> getThemesBySubString(String cond);
-
+	public void deleteThemeById(long id);
 }

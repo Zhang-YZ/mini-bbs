@@ -53,6 +53,12 @@ public class ThemeServiceImpl extends BaseService<Theme> implements ThemeService
 		this.getDao().merge(theme);
 		
 	}
+
+	@Override
+	public void deleteThemeById(long id) {
+		// TODO Auto-generated method stub
+		this.getDao().delete(id);
+	}
 	
 	
 	

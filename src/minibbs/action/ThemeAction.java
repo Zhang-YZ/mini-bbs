@@ -18,6 +18,8 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 	private long themeId;
 	private User tempUser;
 	private String searchContent;
+	private Theme postsTheme;
+	private String errorMessage; 
 	
 	public String getTimeDescThemes() {
 		themetable = this.getService().getAllThemes("createTime desc");
@@ -38,7 +40,7 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 		}
 		Theme theme = this.getModel();
 		if (theme.getTitle() == null || theme.getTitle().contentEquals("")) {
-			this.addFieldError("title", "请填写标题");
+			this.errorMessage="请填写标题";
 			return INPUT;
 		}
 		theme.setUser(user);
@@ -61,8 +63,28 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 		return SUCCESS;
 	}
 	
-
-	
+	public String deleteSingleTheme() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		postsTheme = (Theme) session.get("nowtheme");
+		tempUser = (User) session.get("user");
+		if(tempUser==null) {
+			return "tologin";
+		}
+		if(postsTheme == null) {
+			return "toindex";
+		}
+		if(tempUser.getId()!=postsTheme.getUser().getId() && tempUser.getId()!=1) {
+			this.errorMessage="您的权限不足！";
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+	public String actDeleteTheme() {
+		this.getService().deleteThemeById(postsTheme.getId());
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		session.remove("nowtheme");
+		return SUCCESS;
+	}
 	
 	public List<Theme> getThemetable() {
 		return themetable;
@@ -95,6 +117,22 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+	public Theme getPostsTheme() {
+		return postsTheme;
+	}
+
+	public void setPostsTheme(Theme postsTheme) {
+		this.postsTheme = postsTheme;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 }

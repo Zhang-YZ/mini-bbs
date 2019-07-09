@@ -12,4 +12,5 @@ public interface ReplyService{
 	public void deleteReplyById(long id);
 	public Reply getReplyById(long id);
 	public void deleteRepliesByPost(Post post);
+	public void deleteRepliesByPosts(List<Post> posts);
 }

@@ -16,26 +16,31 @@ import minibbs.model.service.ReplyService;
 
 public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	private static final long serialVersionUID = 1L;
-	private Theme poststheme;
+	private Theme postsTheme;
 	private List<Post> posts;
 	private List<List<Reply>> replies = new ArrayList<List<Reply>>();
 	private Post tempPost;
-	private boolean hasDeleteReply=false;
 	private String errorMessage; 
 	
 	public String getRepliesToDetail() {
-
 		for (Post post : posts) {
 			List<Reply> reply = this.getService().getRepliesByPostAscTime(post);
 			replies.add(reply);
 		}
-		
+		return SUCCESS;
+	}
+	
+	
+	public String getRepliesToProfile() {
+		for (Post post : posts) {
+			List<Reply> reply = this.getService().getRepliesByPost(post);
+			replies.add(reply);
+		}
 		return SUCCESS;
 	}
 
 	public String addReply() {
 		try {
-			System.out.println("============== post " + tempPost);
 			Map<String, Object> session = ActionContext.getContext().getSession();
 			User user = (User) session.get("user");
 			if (user == null) {
@@ -61,7 +66,7 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 		}
 		Long tempId = this.getModel().getId();
 		Reply tempReply = this.getService().getReplyById(tempId);
-		if(tempReply.getUser().getId()!=nowUser.getId()) {
+		if(tempReply.getUser().getId()!=nowUser.getId() && nowUser.getId()!=1) {
 			errorMessage="您的权限不足！";
 			return SUCCESS;
 		}
@@ -73,10 +78,13 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	
 	public String deleteReplies() {
 		this.getService().deleteRepliesByPost(tempPost);
-		this.hasDeleteReply=true;
 		return SUCCESS;
 	}
 	
+	public String deleteRepliesByPosts() {
+		this.getService().deleteRepliesByPosts(posts);
+		return SUCCESS;
+	}
 	
 	public List<Post> getPosts() {
 		return posts;
@@ -87,11 +95,11 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	}
 
 	public Theme getPoststheme() {
-		return poststheme;
+		return postsTheme;
 	}
 
-	public void setPoststheme(Theme poststheme) {
-		this.poststheme = poststheme;
+	public void setPoststheme(Theme postsTheme) {
+		this.postsTheme = postsTheme;
 	}
 
 	public List<List<Reply>> getReplies() {
@@ -110,13 +118,6 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 		this.tempPost = tempPost;
 	}
 
-	public boolean isHasDeleteReply() {
-		return hasDeleteReply;
-	}
-
-	public void setHasDeleteReply(boolean hasDeleteReply) {
-		this.hasDeleteReply = hasDeleteReply;
-	}
 
 	public String getErrorMessage() {
 		return errorMessage;

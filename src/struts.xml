@@ -20,8 +20,8 @@
 			<result name="input"></result>
 		</action>
 		<action name="signup" class="userAction" method="signup">
-			<result name="success">/login.jsp?signup=true</result>
-			<result name="input">/login.jsp?info=true</result>
+			<result name="success">/login.jsp</result>
+			<result name="input">/login.jsp</result>
 		</action>
 		<action name="signout" class="userAction" method="signout">
 			<result name="success">/login.jsp</result>
@@ -115,9 +115,13 @@
 		
 		<action name="getPostsToProfile" class="postAction"
 			method="getPostsToProfile">
-			<!-- <result name="success" type="chain">
+			<result name="success" type="chain">
 				<param name="actionName">getRepliesToProfile</param>
-			</result> -->
+			</result>
+		</action>
+		
+		<action name="getRepliesToProfile" class="replyAction"
+			method="getRepliesToProfile">
 			<result name="success">/profile.jsp</result>
 		</action>
 		
@@ -145,6 +149,8 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		
+		
+		
 
         <action name="deleteSingleReply" class="replyAction" method="deleteSingleReply">
         	<result name="success" type="chain">
@@ -166,14 +172,60 @@
         
         <action name="deleteReplies" class="replyAction" method="deleteReplies">
         	<result name="success" type="chain">
-        	<param name="actionName">deleteSinglePost</param>
+        	<param name="actionName">actDeletePost</param>
+        	</result>
+        </action>
+        
+        <action name="actDeletePost" class="postAction" method="actDeletePost">
+        	<result name="success" type="chain">
+        		<param name="actionName">getPostsToDetail</param>
         	</result>
         </action>
 
 		
+		<action name="deleteSingleTheme" class="themeAction" method="deleteSingleTheme">
+			<result name="success" type="chain">
+        	<param name="actionName">deleteThemePosts</param>
+        	</result>
+        	<result name="tologin">/login.jsp</result>
+        	<result name="error" type="chain">
+        	<param name="actionName">getPostsToDetail</param>
+        	</result>
+        	<result name="toindex" type="chain">
+        	<param name="actionName">getThemeTable</param>
+        	</result>
+		</action>
 		
 		
 		
+		<action name="deleteThemePosts" class="postAction" method="deleteThemePosts">
+			<result name="deletePosts" type="chain">
+        	<param name="actionName">deleteRepliesByPosts</param>
+        	</result>
+        	<result name="success" type="chain">
+        	<param name="actionName">actDeleteTheme</param>
+        	</result>
+		</action>
+		
+		 <action name="deleteRepliesByPosts" class="replyAction" method="deleteRepliesByPosts">
+        	<result name="success" type="chain">
+        	<param name="actionName">actDeletePosts</param>
+        	</result>
+        </action>
+		
+		
+		
+		<action name="actDeleteTheme" class="themeAction" method="actDeleteTheme">
+			<result name="success" type="chain">
+        	<param name="actionName">getThemeTable</param>
+        	</result>
+		</action>
+		
+		<action name="actDeletePosts" class="postAction" method="actDeletePosts">
+        	<result name="success" type="chain">
+        		<param name="actionName">actDeleteTheme</param>
+        	</result>
+        </action>
 
 		
 		

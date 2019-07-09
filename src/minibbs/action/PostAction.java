@@ -16,14 +16,13 @@ import minibbs.model.service.PostService;
 public class PostAction extends BaseAction<Post, PostService> {
 	private static final long serialVersionUID = 1L;
 
-	private Theme poststheme;
+	private Theme postsTheme;
 	private List<Post> posts;
-	private long poststhemeid;
+	private long postsThemeId;
 	private User tempUser;
 	private Post tempPost;
 	private long tempPostId;
 	private List<Theme> themetable;
-	private boolean hasDeleteReply=false;
 	private String errorMessage; 
 
 	public String getPostToReply() {
@@ -33,8 +32,8 @@ public class PostAction extends BaseAction<Post, PostService> {
 
 	public String getPostsToDetail() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
-		poststheme = (Theme) session.get("nowtheme");
-		posts = this.getService().getPostByThemeAscTime(poststheme);
+		postsTheme = (Theme) session.get("nowtheme");
+		posts = this.getService().getPostByThemeAscTime(postsTheme);
 		return SUCCESS;
 	}
 
@@ -45,14 +44,14 @@ public class PostAction extends BaseAction<Post, PostService> {
 	public String addPost() {
 		try {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-			poststheme = (Theme) session.get("nowtheme");
+			postsTheme = (Theme) session.get("nowtheme");
 			User user = (User) session.get("user");
 			if (user == null) {
 				return "tologin";
 			}
 			Post post = this.getModel();
 			post.setUser(user);
-			post.setTheme(poststheme);
+			post.setTheme(postsTheme);
 			this.getService().addPost(post);
 			return SUCCESS;
 		} catch (Exception e) {
@@ -70,29 +69,41 @@ public class PostAction extends BaseAction<Post, PostService> {
 
 	
 	public String deleteSinglePost() {
-		if(!hasDeleteReply) {
-			Map<String, Object> session = ActionContext.getContext().getSession();
-			tempUser = (User) session.get("user");
-			if(tempUser == null) {
-				return "tologin";
-			}
-			tempPostId = this.getModel().getId();
-			tempPost=this.getService().getPostById(tempPostId);
-			System.out.println("++++++++++++ "+tempPost+"  "+tempPostId);
-			if(tempPost.getUser().getId()!=tempUser.getId()) {
-				errorMessage="您的权限不足！";
-				return SUCCESS;
-			}
-			return "toDeleteReply";
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		tempUser = (User) session.get("user");
+		if(tempUser == null) {
+			return "tologin";
 		}
-		else {
-			this.getService().deletePostById(tempPostId);
-			this.hasDeleteReply=false;
+		tempPostId = this.getModel().getId();
+		tempPost=this.getService().getPostById(tempPostId);
+		System.out.println("++++++++++++ "+tempPost+"  "+tempPostId);
+		if(tempPost.getUser().getId()!=tempUser.getId()&& tempUser.getId()!=1) {
+			errorMessage="您的权限不足！";
 			return SUCCESS;
 		}
+		return "toDeleteReply";
 	}
 	
+	public String actDeletePost() {
+		this.getService().deletePostById(tempPost.getId());
+		return SUCCESS;
+	}
+	public String actDeletePosts() {
+		for(Post post:posts) {
+			this.getService().deletePostById(post.getId());
+		}
+		return SUCCESS;
+	}
 	
+	public String deleteThemePosts() {
+		posts = this.getService().getPostByTheme(postsTheme);
+		if(posts==null || posts.size()==0) {
+			return SUCCESS;	
+		}
+		else {
+			return "deletePosts";
+		}
+	}
 	
 	public List<Post> getPosts() {
 		return posts;
@@ -102,20 +113,20 @@ public class PostAction extends BaseAction<Post, PostService> {
 		this.posts = posts;
 	}
 
-	public Theme getPoststheme() {
-		return poststheme;
+	public Theme getPostsTheme() {
+		return postsTheme;
 	}
 
-	public void setPoststheme(Theme poststheme) {
-		this.poststheme = poststheme;
+	public void setPostsTheme(Theme postsTheme) {
+		this.postsTheme = postsTheme;
 	}
 
 	public long getPoststhemeid() {
-		return poststhemeid;
+		return postsThemeId;
 	}
 
-	public void setPoststhemeid(long poststhemeid) {
-		this.poststhemeid = poststhemeid;
+	public void setPoststhemeid(long postsThemeId) {
+		this.postsThemeId = postsThemeId;
 	}
 
 	public Post getTempPost() {
@@ -150,13 +161,6 @@ public class PostAction extends BaseAction<Post, PostService> {
 		this.themetable = themetable;
 	}
 
-	public boolean isHasDeleteReply() {
-		return hasDeleteReply;
-	}
-
-	public void setHasDeleteReply(boolean hasDeleteReply) {
-		this.hasDeleteReply = hasDeleteReply;
-	}
 
 	public String getErrorMessage() {
 		return errorMessage;

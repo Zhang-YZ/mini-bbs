@@ -33,19 +33,19 @@
 
     <div class="comment-title">
         <h3 class="text-center text-dark">
-            <s:property value="poststheme.title"></s:property>
+            <s:property value="postsTheme.title"></s:property>
         </h3>
         <div class="archive-bar text-center mt-3">
             <p class="detail-creator">
-                <s:property value="poststheme.user.nickname"></s:property>
+                <s:property value="postsTheme.user.nickname"></s:property>
                 (<a
-                    href="gotoProfile?tempUserId=<s:property value="poststheme.user.id"></s:property>">
-                <s:property value="poststheme.user.email"></s:property></a>)
+                    href="gotoProfile?tempUserId=<s:property value="postsTheme.user.id"></s:property>">
+                <s:property value="postsTheme.user.email"></s:property></a>)
             </p>
         </div>
         <div class="text-center">
             <p class="detail-time">
-                <s:property value="poststheme.createTime"></s:property>
+                <s:property value="postsTheme.createTime"></s:property>
             </p>
         </div>
 
@@ -73,27 +73,19 @@
             <div class="comments mt-4">
                 <div class="main-contents">
                     <p>
-                            ++++++++++++++++++++++
-                    <s:if test="hasActionErrors()">
-
-        <s:actionerror />
-        =====================
-        </s:if>
-        <s:if test="hasActionMessages()">
-			
-        <s:actionmessage />
-        =====================
-        </s:if>
-                    <s:property value="poststheme.content"></s:property>
+                    	<s:property value="postsTheme.content"></s:property>
                     </p>
+                    <form action="deleteSingleTheme">
+                    <input name="themeId" value="<s:property value="id"></s:property>" type="hidden">
                     <div class="row detail-cell-bottom">
                         <div class="col"></div>
                         <div class="col mb-2">
                             <div class="btn-group float-right" role="group" aria-label="">
-                                <button type="button" class="btn"><i class="fas fa-trash"></i></button>
+                                <button type="submit" class="btn"><i class="fas fa-trash"></i></button>
                             </div>
                         </div>
                     </div>
+                    </form>
                     </div>
                 </div>
 
@@ -211,8 +203,8 @@
             <form autocomplete="off" action="addPost" method="post">
                 <div class="create-new-comment form-group">
                     <textarea name="content" class="form-control send-comment" rows="4"></textarea>
-                    <input type="hidden" name="poststhemeid"
-                           value="<s:property value="poststheme.id"></s:property>"/>
+                    <input type="hidden" name="postsThemeid"
+                           value="<s:property value="postsTheme.id"></s:property>"/>
                     <div class="row mt-2 ">
                         <div class="col-11"></div>
                         <div class="col-1">
@@ -225,5 +217,35 @@
         </div>
     </div>
 </div>
+
+<div id="toast">
+    <div id="img">
+        <i class="fas fa-exclamation-circle"></i>
+    </div>
+    <div id="desc">ID被占用了</div>
+</div>
+<script>
+    function launch_toast() {
+        var x = document.getElementById("toast")
+        x.className = "show";
+        var desc = document.getElementById("desc");
+        desc.innerHTML = "<s:property value="errorMessage"></s:property>";
+        setTimeout(function() {
+            x.className = x.className.replace("show", "");
+        }, 5000);
+    };
+    (function() {
+        // your page initialization code here
+        // the DOM will be available here
+        if("<s:property value="errorMessage"></s:property>" == "") {
+            console.log("no error");
+        } else {
+            launch_toast();
+        }
+
+    })();
+</script>
+
+
 </body>
 </html>

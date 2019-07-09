@@ -13,6 +13,7 @@ public class BaseAction<TEntity, TService> extends ActionSupport implements Mode
 	
 	private TService service;
 	private TEntity model;
+	protected String errorMessage;
 //	protected Post tempPost;
 //	private Theme tempTheme;
 //	private User tempUser;
@@ -33,6 +34,14 @@ public class BaseAction<TEntity, TService> extends ActionSupport implements Mode
 
 	public void setService(TService service) {
 		this.service = service;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
 	}
 
 //	public Post getTempPost() {

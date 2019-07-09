@@ -133,14 +133,20 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <s:iterator value="themetable">
+                    <s:iterator value="replies" status="L">
+                   	<s:iterator value="replies[#L.index]">
                         <tr>
                             <th scope="row"><s:property value="createTime"></s:property></th>
                             <td>
-                                <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property
-                                        value="title"></s:property></a>
+                            	<s:property value="user.nickname"></s:property>	(<a href="gotoProfile?tempUserId=<s:property value="postsTheme.user.id"></s:property>"> 
+                            	<s:property value="user.email"></s:property></a>)
+                            	<br />
+                            	<s:property value="content"></s:property>
+                            	<br />
+                                <a href="gotoDetail.action?themeId=<s:property value="post.theme.id"></s:property>">查看</a>
                             </td>
                         </tr>
+                        </s:iterator>
                     </s:iterator>
                     </tbody>
                 </table>

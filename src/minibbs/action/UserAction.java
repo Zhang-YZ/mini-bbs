@@ -16,15 +16,16 @@ public class UserAction extends BaseAction<User,UserService>{
 	private long tempUserId;
 	private String searchContent;
 	
+	
     public String signin() throws Exception{
     	String email = this.getModel().getEmail();
 		String password = this.getModel().getPassword();
 		if(email == null) {
-			this.addFieldError("email", "请输入Email");
+			this.errorMessage="请输入邮箱！";
 			return INPUT;
 		}
 		if(password==null) {
-			this.addFieldError("password", "请输入密码");
+			this.errorMessage="请输入密码！";
 			return INPUT;
 		}
 		User user = this.getService().verify(email, password);
@@ -33,7 +34,7 @@ public class UserAction extends BaseAction<User,UserService>{
 			session.put("user", user);
 			return SUCCESS;
 		}
-		this.addActionError("用户名或密码错误！");
+		this.errorMessage="用户名或密码错误！";
 		return INPUT;
     }
     
@@ -48,11 +49,11 @@ public class UserAction extends BaseAction<User,UserService>{
     	String repeatpw = this.getModel().getRepeatpw();
     	boolean check = this.getService().checkEmail(email);
     	if(!check) {
-    		this.addFieldError("email", "Email已经被占用，请重新输入");
+    		this.errorMessage="Email已经被占用，请重新输入";
     		return INPUT;
     	}
     	if(!repeatpw.equals(password)){
-    		this.addFieldError("repeatpw", "两次输入密码不一致！");
+    		this.errorMessage="两次输入密码不一致！";
     		return INPUT;
     	}
     	try {
