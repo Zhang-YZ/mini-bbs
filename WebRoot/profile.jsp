@@ -7,12 +7,13 @@
     <link rel="stylesheet" href="pages/css/main.css">
     <link rel="stylesheet" href="pages/css/profile.css">
     <script src="https://kit.fontawesome.com/79b7c3f541.js"></script>
-    <script src="pages/js/main.js"></script>
+<%--    <script src="pages/js/main.js"></script>--%>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <title>Title</title>
 </head>
+    <s:include value="navbar.jsp"/>
 <body class="bg-primary">
 <div class="container bg-primary">
     <div class="row profile">
@@ -42,22 +43,22 @@
                 <!-- SIDEBAR MENU -->
                 <div class="profile-usermenu">
                     <ul class="tablnav nav-tabse">
-                        <li class="active">
+                        <li data-rel="1" class="active">
                             <a href="#">
                                 <i class="glyphicon glyphicon-home"></i>
                                 我的主题 </a>
                         </li>
-                        <li>
+                        <li data-rel="2">
                             <a href="#">
                                 <i class="glyphicon glyphicon-user"></i>
-                                账户设置 </a>
+                                    回复列表 </a>
                         </li>
-                        <li>
+                        <li data-rel="3">
                             <a href="#" target="_blank">
                                 <i class="glyphicon glyphicon-ok"></i>
-                                网站设置 </a>
+                                账户设置 </a>
                         </li>
-                        <li>
+                        <li data-rel="4">
                             <a href="#">
                                 <i class="glyphicon glyphicon-flag"></i>
                                 查看帮助 </a>
@@ -67,8 +68,35 @@
                 <!-- END MENU -->
             </div>
         </div>
+
+    <script>
+    var $=jQuery.noConflict();
+
+    $(document).ready(function(){
+    // jQuery code is in here
+    $('li a').click(function(e) {
+    e.preventDefault();
+    $('li').removeClass('active');
+    $(this).parent().addClass('active');
+    $('section').removeClass('can-show');
+    $('section:nth-of-type('+$(this).parent().data('rel')+')').addClass('can-show');
+    });
+    });
+
+<%--    console.log('section:nth-of-type('+$(this).parent().data('rel')+')');--%>
+
+    </script>
+
+    <style>
+    .profile-content {
+    display: none;
+    }
+    .profile-content.can-show {
+    display: block !important;
+    }
+    </style>
         <div class="col-md-9">
-            <div class="profile-content">
+            <section class="profile-content can-show">
                 <table class="table">
                     <thead>
                     <tr>
@@ -87,7 +115,27 @@
                     </s:iterator>
                     </tbody>
                 </table>
-            </div>
+            </section>
+    <section class="profile-content">
+    <table class="table">
+    <thead>
+    <tr>
+    <th scope="col">日期</th>
+    <th scope="col">我的回复</th>
+    </tr>
+    </thead>
+    <tbody>
+    <s:iterator value="themetable">
+        <tr>
+        <th scope="row"><s:property value="createTime"></s:property></th>
+        <td>
+        <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property value="title"></s:property></a>
+        </td>
+        </tr>
+    </s:iterator>
+    </tbody>
+    </table>
+    </section>
         </div>
     </div>
 </div>

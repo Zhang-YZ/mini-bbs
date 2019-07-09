@@ -108,7 +108,7 @@ body{}
 	background-color: #eee;
 }
 .table thead > tr > th {
-	border-bottom: 1px solid #C2C2C2;
+	border-bottom: 1px solid #7F5AB6;
 	padding-bottom: 0;
 }
 .table tbody > tr > td {

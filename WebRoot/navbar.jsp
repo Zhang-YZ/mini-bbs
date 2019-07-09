@@ -42,9 +42,8 @@
 			<div class="searchbar">
 
 				<input name="searchContent" class="search_input" type="text" name=""
-					placeholder="Search..."> 
-					<div type="submit" class="search_icon"><i 
-					class="fas fa-search"></i></div>
+					placeholder="">
+	<button type="submit" class="search_icon"><i class="fas fa-search"></i></button>
 					
 
 			</div>
@@ -60,13 +59,11 @@
 			<ul class="dropdown-menu">
 				<li><a href="gotoSelfProfile.action" class="dropdown-item"><i
 						class="fa fa-user-o"></i> Profile</a></li>
-				<li><a href="#" class="dropdown-item"><i
-						class="fa fa-calendar-o"></i> Calendar</a></li>
-				<li><a href="#" class="dropdown-item"><i
-						class="fa fa-sliders"></i> Settings</a></li>
+<%--				<li><a href="#" class="dropdown-item"><i--%>
+<%--						class="fa fa-sliders"></i> Settings</a></li>--%>
 				<li class="divider dropdown-divider"></li>
-				<li><a href="signout.action" class="dropdown-item"><i
-						class="material-icons">&#xE8AC;</i> Logout</a></li>
+				<li><a href="signout.action" class="dropdown-item">
+	<i class="fas fa-sign-out-alt"></i>Logout</a></li>
 			</ul></li>
 	</ul>
 </nav>
@@ -76,7 +73,7 @@
 	margin-bottom: auto;
 	margin-top: auto;
 	height: 40px;
-	background-color: #353b48;
+	background-color: #7F5AB6;
 	border-radius: 30px;
 	padding: 5px;
 }
@@ -91,6 +88,10 @@
 	line-height: 30px;
 	transition: width 0.4s linear;
 }
+
+.search_input ::placeholder {
+	color: white;
+	}
 
 .searchbar:hover>.search_input {
 	padding: 0 10px;
@@ -112,6 +113,6 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 50%;
-	color: white;
+	color: #7F5AB6;
 }
 </style>

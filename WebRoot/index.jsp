@@ -131,7 +131,7 @@
 	</div>
 
 
-	<table class="table container main-contents mt-4">
+	<table class="table container table-hover main-contents mt-4">
 		<thead>
 			<tr>
 				<th scope="col">热度</th>
@@ -143,12 +143,27 @@
 		<tbody>
 			<s:iterator value="themetable">
 				<tr>
-					<th scope="row"><s:property value="heat" /></th>
+					<th scope="row"><i class="fas fa-fire mr-2 text-primary"></i><s:property value="heat" /></th>
 					<td>
 						<form action="gotoDetail">
 							<input type="hidden" name="themeId" value="<s:property value="id" />" />
 							<%-- <s:submit key="<s:property value="title" />"/> --%>
-							<input type="submit" value="<s:property value="title" />"/>
+				<style>
+				.theme-title {
+				background:none;
+				color:inherit;
+				border:none;
+				padding:0!important;
+				font: inherit;
+				/*border is optional*/
+				<%--				border-bottom:1px solid #444;--%>
+				cursor: pointer;
+				}
+
+				</style>
+				<button class='theme-title' type="submit">
+				<s:property value="title" />
+				</button>
 						</form>
 					</td>
 					<td><s:property value="heat" /></td>
@@ -166,6 +181,9 @@
 	//     })
 	// });
 </script>
+
+	<style>
+	</style>
 
 <script src="pages/js/main.js"></script>
 </html>

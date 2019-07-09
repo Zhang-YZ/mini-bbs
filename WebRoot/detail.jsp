@@ -47,6 +47,7 @@
 					<div class="text-center">
 						<s:property value="poststheme.content"></s:property>
 					</div>
+	<button class="btn btn-primary ml-auto justify-content-end">删除</button>
 				</div>
 
 
@@ -69,9 +70,9 @@
 													href="gotoProfile?tempUserId=<s:property value="user.id"></s:property>"
 													><s:property value="user.email"></s:property></a>)
 											</div>
-											<div class="col-6"></div>
-											<div class="col-2">
-												<s:property value="createTime"></s:property>
+											<div class="col-4"></div>
+											<div class="col-4">
+												<small><s:property value="createTime"></s:property></small>
 											</div>
 										</div>
 										<div class="mt-2">
@@ -90,7 +91,7 @@
 											</div>
 											<div class="col-1">
 												<button class="btn">
-													<i class="fas fa-link"></i>
+													<i class="fas fa-trash"></i>
 												</button>
 											</div>
 											<div class="col-2">
@@ -116,6 +117,9 @@
 													<p class="card-text">
 														<s:property value="content"></s:property>
 													</p>
+													<div>
+														<button class="btn btn-primary">delete</button>
+													</div>
 												</div>
 											</s:iterator>
 											<form action="getPostToReply">
