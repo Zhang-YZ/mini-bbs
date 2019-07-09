@@ -22,13 +22,21 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 	
 	public String getTimeDescThemes() {
 		themetable = this.getService().getAllThemes("createTime desc");
-		return SUCCESS;
+		if(themetable!=null && themetable.size()>0) {
+			return SUCCESS;
+		}
+		return INPUT;
 	}
 	
 	public String getHeatDescThemes() {
 		themetable = this.getService().getAllThemes("heat desc");
 		return SUCCESS;
 	}
+	
+	
+	
+	
+	
 	
 	public String searchTheme() {
 		themetable = this.getService().getThemesBySubString(searchContent);

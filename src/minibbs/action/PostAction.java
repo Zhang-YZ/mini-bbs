@@ -23,6 +23,7 @@ public class PostAction extends BaseAction<Post, PostService> {
 	private Post tempPost;
 	private long tempPostId;
 	private List<Theme> themetable;
+	private List<List<Post>> themePosts;
 
 	public String getPostToReply() {
 		this.tempPost = this.getService().getPostById(tempPostId);
@@ -36,9 +37,10 @@ public class PostAction extends BaseAction<Post, PostService> {
 		return SUCCESS;
 	}
 
-//	public String getPostNumToIndex() {
-//		
-//	}
+	public String getPostNumToIndex() {
+		themePosts=this.getService().getPostsByThemes(themetable);
+		return SUCCESS;	
+	}
 
 	public String addPost() {
 		try {
@@ -158,6 +160,14 @@ public class PostAction extends BaseAction<Post, PostService> {
 
 	public void setThemetable(List<Theme> themetable) {
 		this.themetable = themetable;
+	}
+
+	public List<List<Post>> getThemePosts() {
+		return themePosts;
+	}
+
+	public void setThemePosts(List<List<Post>> themePosts) {
+		this.themePosts = themePosts;
 	}
 
 }

@@ -1,5 +1,6 @@
 package minibbs.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import minibbs.model.entity.Post;
@@ -56,6 +57,19 @@ public class PostServiceImpl extends BaseService<Post> implements PostService{
 		// TODO Auto-generated method stub
 		this.getDao().delete(id);
 		
+	}
+
+
+
+	@Override
+	public List<List<Post>> getPostsByThemes(List<Theme> themes) {
+		// TODO Auto-generated method stub
+		List<List<Post>> result = new ArrayList<List<Post>>();
+		for(Theme theme:themes) {
+			List<Post> tempPosts = this.getDao().findBy("theme.id", theme.getId(),"createTime desc");
+			result.add(tempPosts);
+		}
+		return result;
 	}
 
 }

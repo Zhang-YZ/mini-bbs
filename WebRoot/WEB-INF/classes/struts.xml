@@ -31,16 +31,25 @@
 		
 
 		<!-- index -->
-		<action name="getThemeTable" class="themeAction"
-			method="getTimeDescThemes">
-			<result name="success" >/index.jsp</result>
-<!-- 			<result name="success" type="chain" >
-				<param name="actionName">getReplyNumToIndex</param>
-			</result> -->
+		<action name="getThemeTable" class="themeAction" method="getTimeDescThemes">
+			<result name="input" >/index.jsp</result>
+			<result name="success" type="chain" >
+				<param name="actionName">getPostNumToIndex</param>
+			</result>
 		</action>
-
-<!-- 		<action name="getiReplyNumToIndex" class="postAction" method="getReplyNumToIndex">
-			<result name="success" 		</action> -->
+		
+	
+		<action name="getPostNumToIndex" class="postAction" method="getPostNumToIndex">
+			<result name="success" type="chain" >
+				<param name="actionName">getReplyNumToIndex</param>
+			</result>		
+		</action>
+		
+		<action name="getReplyNumToIndex" class="replyAction" method="getReplyNumToIndex">
+			<result name="success">/index.jsp</result>		
+		</action>
+		
+		
 
 		<action name="createTheme" class="themeAction"
 			method="createTheme">

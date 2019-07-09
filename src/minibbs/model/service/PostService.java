@@ -13,4 +13,5 @@ public interface PostService{
 	public Post getPostById(long id);
 	public List<Post> getPostsByUserDescTime(User user);
 	public void deletePostById(long id);
+	public List<List<Post>> getPostsByThemes(List<Theme> themes);
 }

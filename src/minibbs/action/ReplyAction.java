@@ -1,5 +1,6 @@
 package minibbs.action;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -13,14 +14,19 @@ import minibbs.model.entity.Reply;
 import minibbs.model.entity.Theme;
 import minibbs.model.entity.User;
 import minibbs.model.service.ReplyService;
+import minibbs.util.HeatUtil;
 
 public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	private static final long serialVersionUID = 1L;
 	private Theme postsTheme;
 	private List<Post> posts;
 	private List<List<Reply>> replies = new ArrayList<List<Reply>>();
+	private List<List<Post>> themePosts = new ArrayList<List<Post>>();
 	private Post tempPost;
 	private String errorMessage; 
+	private List<Integer> replyNum;
+	private List<Integer> heatNum;
+	private List<Theme> themetable;
 	
 	public String getRepliesToDetail() {
 		for (Post post : posts) {
@@ -30,6 +36,38 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 		return SUCCESS;
 	}
 	
+	public String getReplyNumToIndex() throws ParseException {
+		replyNum = new ArrayList<Integer>();
+		heatNum = new ArrayList<Integer>();
+		int tempReplyNum;
+		long tempTime;
+		long tempTime2;
+		for(int i=0;i<themePosts.size();i++) {
+			tempReplyNum = 0;
+			tempTime=0;
+			tempTime2=0;
+			for(int j=0;j<themePosts.get(i).size();j++) {
+				if(themePosts.get(i).get(j)!=null) {
+					tempTime2=HeatUtil.turnToSecond(themePosts.get(i).get(0).getCreateTime());
+					tempTime = tempTime>tempTime2?tempTime:tempTime2;
+					List<Reply> replies = this.getService().getRepliesByPost(themePosts.get(i).get(j));
+					for(int k=0;k<replies.size();k++) {
+						if(replies.get(k)!=null) {
+							tempTime2=HeatUtil.turnToSecond(replies.get(k).getCreateTime());
+							tempTime = tempTime>tempTime2?tempTime:tempTime2;
+							break;
+						}
+					}
+					tempTime = tempTime>tempTime2?tempTime:tempTime2;
+					tempReplyNum += (1+replies.size());
+				}	
+			}
+			
+			replyNum.add(tempReplyNum);		
+			heatNum.add(HeatUtil.getHeat(tempTime, themetable.get(i).getHit(), tempReplyNum));
+		}
+		return SUCCESS;	
+	}
 	
 	public String getRepliesToProfile() {
 		for (Post post : posts) {
@@ -127,5 +165,29 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 		this.errorMessage = errorMessage;
 	}
 
+
+	public List<List<Post>> getThemePosts() {
+		return themePosts;
+	}
+
+
+	public void setThemePosts(List<List<Post>> themePosts) {
+		this.themePosts = themePosts;
+	}
+
+	public List<Integer> getReplyNum() {
+		return replyNum;
+	}
+
+	public void setReplyNum(List<Integer> replyNum) {
+		this.replyNum = replyNum;
+	}
+	public List<Theme> getThemetable() {
+		return themetable;
+	}
+
+	public void setThemetable(List<Theme> themetable) {
+		this.themetable = themetable;
+	}
 
 }
