@@ -14,10 +14,6 @@ public class BaseAction<TEntity, TService> extends ActionSupport implements Mode
 	private TService service;
 	private TEntity model;
 	protected String errorMessage;
-//	protected Post tempPost;
-//	private Theme tempTheme;
-//	private User tempUser;
-//	private  
 
 	@Override
 	public TEntity getModel() {

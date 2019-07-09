@@ -10,8 +10,7 @@ import minibbs.model.service.UserService;
 
 public class UserAction extends BaseAction<User,UserService>{
 	private static final long serialVersionUID = 1L;
-//	private int testint,testint2;
-	
+
 	private User tempUser;
 	private long tempUserId;
 	private String searchContent;
@@ -157,32 +156,4 @@ public class UserAction extends BaseAction<User,UserService>{
 		this.searchContent = searchContent;
 	}
     
-    
-    
-    
-    
-//    public String testhref() {
-//    	this.testint=10;
-//    	return SUCCESS;
-//    }
-//
-//
-//	public int getTestint() {
-//		return testint;
-//	}
-//
-//
-//	public void setTestint(int testint) {
-//		this.testint = testint;
-//	}
-//
-//
-//	public int getTestint2() {
-//		return testint2;
-//	}
-//
-//
-//	public void setTestint2(int testint2) {
-//		this.testint2 = testint2;
-//	}
 }

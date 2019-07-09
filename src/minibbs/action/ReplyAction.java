@@ -127,58 +127,5 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 		this.errorMessage = errorMessage;
 	}
 
-//	private String replystr;
-//	private String poststr;
-//	private String testa;
-//	private String testc;
-//	private String testb;
-//	public String testReply() {
-//		System.out.println("!!!!!!!  from reply testa: "+testa);
-//		System.out.println("!!!!!!!  from reply testc: "+testc);
-//		System.out.println("!!!!!!!  from reply poststr: "+poststr);
-//		replystr=testb;
-//		return SUCCESS;
-//	}
-//	
-//	public String getReplystr() {
-//		return this.replystr;
-//	}
-//	public void setReplystr(String replystr) {
-//		this.replystr=replystr;
-//	}
-//   
-//
-//	public String getTesta() {
-//		return testa;
-//	}
-//
-//
-//	public void setTesta(String testa) {
-//		this.testa = testa;
-//	}
-//
-//	public String getTestc() {
-//		return testc;
-//	}
-//
-//	public void setTestc(String testc) {
-//		this.testc = testc;
-//	}
-//	
-//	public String getTestb() {
-//		return testb;
-//	}
-//
-//	public void setTestb(String testb) {
-//		this.testb = testb;
-//	}
-//
-//	public String getPoststr() {
-//		return poststr;
-//	}
-//
-//	public void setPoststr(String poststr) {
-//		this.poststr = poststr;
-//	}
 
 }

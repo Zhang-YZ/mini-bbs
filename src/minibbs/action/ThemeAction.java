@@ -19,10 +19,14 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 	private User tempUser;
 	private String searchContent;
 	private Theme postsTheme;
-	private String errorMessage; 
 	
 	public String getTimeDescThemes() {
 		themetable = this.getService().getAllThemes("createTime desc");
+		return SUCCESS;
+	}
+	
+	public String getHeatDescThemes() {
+		themetable = this.getService().getAllThemes("heat desc");
 		return SUCCESS;
 	}
 	
@@ -125,14 +129,6 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 
 	public void setPostsTheme(Theme postsTheme) {
 		this.postsTheme = postsTheme;
-	}
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
 	}
 
 }

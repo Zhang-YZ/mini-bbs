@@ -23,7 +23,6 @@ public class PostAction extends BaseAction<Post, PostService> {
 	private Post tempPost;
 	private long tempPostId;
 	private List<Theme> themetable;
-	private String errorMessage; 
 
 	public String getPostToReply() {
 		this.tempPost = this.getService().getPostById(tempPostId);
@@ -160,43 +159,5 @@ public class PostAction extends BaseAction<Post, PostService> {
 	public void setThemetable(List<Theme> themetable) {
 		this.themetable = themetable;
 	}
-
-
-	public String getErrorMessage() {
-		return errorMessage;
-	}
-
-	public void setErrorMessage(String errorMessage) {
-		this.errorMessage = errorMessage;
-	}
-
-//	public String getPoststr() {
-//		return poststr;
-//	}
-//
-//
-//	public void setPoststr(String poststr) {
-//		this.poststr = poststr;
-//	}
-//
-//
-//	public String getTesta() {
-//		return testa;
-//	}
-//
-//
-//	public void setTesta(String testa) {
-//		this.testa = testa;
-//	}
-//
-//
-//	public String getTestb() {
-//		return testb;
-//	}
-//
-//
-//	public void setTestb(String testb) {
-//		this.testb = testb;
-//	}
 
 }
