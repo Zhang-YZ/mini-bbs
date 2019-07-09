@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="pages/css/main.css">
     <link rel="stylesheet" href="pages/css/detail.css">
+    <link rel="stylesheet" href="pages/css/toast.css">
     <script src="assets/fontawesomekit.js"></script>
     <script src="pages/js/main.js"></script>
     <script src="assets/jquery-3.2.1.slim.min.js"

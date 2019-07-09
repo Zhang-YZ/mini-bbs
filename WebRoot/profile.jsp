@@ -47,7 +47,7 @@
                 </div>
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
+                <div id="profile-selector" class="profile-usermenu">
                     <ul class="tablnav nav-tabse">
                         <li data-rel="1" class="active">
                             <a href="#">
@@ -80,7 +80,7 @@
 
             $(document).ready(function () {
                 // jQuery code is in here
-                $('li a').click(function (e) {
+                $('#profile-selector li a').click(function (e) {
                     e.preventDefault();
                     $('li').removeClass('active');
                     $(this).parent().addClass('active');

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +34,6 @@
 	font-size: 17px;
 	white-space: nowrap;
 }
-
 #toast #img {
 	width: 50px;
 	height: 50px;
@@ -45,14 +44,12 @@
 	background-color: white;
 	color: #7F5AB6;
 }
-
 #toast #desc {
 	color: #7F5AB6;
 	padding: 16px;
 	overflow: hidden;
 	white-space: nowrap;
 }
-
 #toast.show {
 	visibility: visible;
 	-webkit-animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink
@@ -60,99 +57,79 @@
 	animation: fadein 0.5s, expand 0.5s 0.5s, stay 3s 1s, shrink 0.5s 4s,
 		fadeout 0.5s 4.5s;
 }
-
 @-webkit-keyframes fadein {
 	from {bottom: 0;
 	opacity: 0;
 }
-
 to {
 	bottom: 30px;
 	opacity: 1;
 }
-
 }
 @keyframes fadein {
 	from {bottom: 0;
 	opacity: 0;
 }
-
 to {
 	bottom: 30px;
 	opacity: 1;
 }
-
 }
 @-webkit-keyframes expand {
 	from {min-width: 50px
 }
-
 to {
 	min-width: 350px
 }
-
 }
 @keyframes expand {
 	from {min-width: 50px
 }
-
 to {
 	min-width: 350px
 }
-
 }
 @-webkit-keyframes stay {
 	from {min-width: 350px
 }
-
 to {
 	min-width: 350px
 }
-
 }
 @keyframes stay {
 	from {min-width: 350px
 }
-
 to {
 	min-width: 350px
 }
-
 }
 @-webkit-keyframes shrink {
 	from {min-width: 350px;
 }
-
 to {
 	min-width: 50px;
 }
-
 }
 @keyframes shrink {
 	from {min-width: 350px;
 }
-
 to {
 	min-width: 50px;
 }
-
 }
 @-webkit-keyframes fadeout {
 	from {bottom: 30px;
 	opacity: 1;
 }
-
 to {
 	bottom: 60px;
 	opacity: 0;
 }
-
 }
 @keyframes fadeout {
 	from {bottom: 30px;
 	opacity: 1;
 }
-
 to {
 	bottom: 60px;
 	opacity: 0;
@@ -161,6 +138,14 @@ to {
 </style>
 
 <body class="bg-primary">
+
+
+			<div id="toast">
+				<div id="img">
+					<i class="fas fa-exclamation-circle"></i>
+				</div>
+				<div id="desc">ID被占用了</div>
+			</div>
 
 	<div id="logreg-forms" class="bg-white rounded p-3">
 		<%-- 		<%
@@ -211,32 +196,37 @@ to {
 			<input name="repeatpw" type="password" id="user-repeatpass"
 				class="form-control" placeholder="确认密码" required autofocus="">
 
-			<button onclick="launch_toast()">Show Toast</button>
-
-			<div id="toast">
-				<div id="img">
-					<i class="fas fa-exclamation-circle"></i>
-				</div>
-				<div id="desc">ID被占用了</div>
-			</div>
 
 			
 			<script>
-				function launch_toast() {
+				/* function launch_toast() {
 					var x = document.getElementById("toast")
 					x.className = "show";
 					setTimeout(function() {
 						x.className = x.className.replace("show", "");
 					}, 5000);
-				};
+				}; */
+				function launch_toast() {
+			        var x = document.getElementById("toast")
+			        x.className = "show";
+			        var desc = document.getElementById("desc");
+			        desc.innerHTML = "<s:property value="errorMessage"></s:property>";
+			        setTimeout(function() {
+			            x.className = x.className.replace("show", "");
+			        }, 5000);
+			    };
 				console.log("launch_toast defined");
-				
+				(function() {
+			        // your page initialization code here
+			        // the DOM will be available here
+			        if("<s:property value="errorMessage"></s:property>" == "") {
+			            console.log("no error");
+			        } else {
+			            launch_toast();
+			        }
+			    })();
 			</script>
 			
-			<script type="text/javascript">
-launch_toast();
-console.log("executed");
-</script>
 			
 
 			<button class="btn btn-primary btn-block" type="submit">
