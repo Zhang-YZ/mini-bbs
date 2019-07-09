@@ -1,5 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8"%>
-<%@ taglib uri="/struts-tags" prefix="s"%>
+<%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib uri="/struts-tags" prefix="s" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,13 +7,19 @@
     <link rel="stylesheet" href="pages/css/main.css">
     <link rel="stylesheet" href="pages/css/profile.css">
     <script src="assets/fontawesomekit.js"></script>
-<%--    <script src="pages/js/main.js"></script>--%>
-    <script src="assets/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="assets/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="assets/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <%--    <script src="pages/js/main.js"></script>--%>
+    <script src="assets/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="assets/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="assets/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     <title>Title</title>
 </head>
-    <s:include value="navbar.jsp"/>
+<s:include value="navbar.jsp"/>
 <body class="bg-primary">
 <div class="container bg-primary">
     <div class="row profile">
@@ -51,7 +57,7 @@
                         <li data-rel="2">
                             <a href="#">
                                 <i class="glyphicon glyphicon-user"></i>
-                                    回复列表 </a>
+                                回复列表 </a>
                         </li>
                         <li data-rel="3">
                             <a href="#" target="_blank">
@@ -69,32 +75,33 @@
             </div>
         </div>
 
-    <script>
-    var $=jQuery.noConflict();
+        <script>
+            var $ = jQuery.noConflict();
 
-    $(document).ready(function(){
-    // jQuery code is in here
-    $('li a').click(function(e) {
-    e.preventDefault();
-    $('li').removeClass('active');
-    $(this).parent().addClass('active');
-    $('section').removeClass('can-show');
-    $('section:nth-of-type('+$(this).parent().data('rel')+')').addClass('can-show');
-    });
-    });
+            $(document).ready(function () {
+                // jQuery code is in here
+                $('li a').click(function (e) {
+                    e.preventDefault();
+                    $('li').removeClass('active');
+                    $(this).parent().addClass('active');
+                    $('section').removeClass('can-show');
+                    $('section:nth-of-type(' + $(this).parent().data('rel') + ')').addClass('can-show');
+                });
+            });
 
-<%--    console.log('section:nth-of-type('+$(this).parent().data('rel')+')');--%>
+            <%--    console.log('section:nth-of-type('+$(this).parent().data('rel')+')');--%>
 
-    </script>
+        </script>
 
-    <style>
-    .profile-content {
-    display: none;
-    }
-    .profile-content.can-show {
-    display: block !important;
-    }
-    </style>
+        <style>
+            .profile-content {
+                display: none;
+            }
+
+            .profile-content.can-show {
+                display: block !important;
+            }
+        </style>
         <div class="col-md-9">
             <section class="profile-content can-show">
                 <table class="table">
@@ -106,36 +113,53 @@
                     </thead>
                     <tbody>
                     <s:iterator value="themetable">
-                    <tr>
-                        <th scope="row"><s:property value="createTime"></s:property></th>
-                        <td>
-                            <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property value="title"></s:property></a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <th scope="row"><s:property value="createTime"></s:property></th>
+                            <td>
+                                <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property
+                                        value="title"></s:property></a>
+                            </td>
+                        </tr>
                     </s:iterator>
                     </tbody>
                 </table>
             </section>
-    <section class="profile-content">
-    <table class="table">
-    <thead>
-    <tr>
-    <th scope="col">日期</th>
-    <th scope="col">我的回复</th>
-    </tr>
-    </thead>
-    <tbody>
-    <s:iterator value="themetable">
-        <tr>
-        <th scope="row"><s:property value="createTime"></s:property></th>
-        <td>
-        <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property value="title"></s:property></a>
-        </td>
-        </tr>
-    </s:iterator>
-    </tbody>
-    </table>
-    </section>
+            <section class="profile-content">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">日期</th>
+                        <th scope="col">我的回复</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <s:iterator value="themetable">
+                        <tr>
+                            <th scope="row"><s:property value="createTime"></s:property></th>
+                            <td>
+                                <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property
+                                        value="title"></s:property></a>
+                            </td>
+                        </tr>
+                    </s:iterator>
+                    </tbody>
+                </table>
+            </section>
+            <section class="profile-content">
+                <h5 class="text-grey mb-3">可以修改以下信息</h5>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="输入新的用户名" aria-label="" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">点击修改</button>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="输入新的密码" aria-label="" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="button">点击修改</button>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 </div>
