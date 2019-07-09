@@ -57,7 +57,7 @@
                         <li data-rel="2">
                             <a href="#">
                                 <i class="glyphicon glyphicon-user"></i>
-                                回复列表 </a>
+                                收到回复 </a>
                         </li>
                         <li data-rel="3">
                             <a href="#" target="_blank">
@@ -114,7 +114,7 @@
                     <tbody>
                     <s:iterator value="themetable">
                         <tr>
-                            <th scope="row"><s:property value="createTime"></s:property></th>
+                            <td scope="row" class="reply-createtime"><s:property value="createTime"></s:property></td>
                             <td>
                                 <a href="gotoDetail.action?themeId=<s:property value="id"></s:property>"><s:property
                                         value="title"></s:property></a>
@@ -124,32 +124,39 @@
                     </tbody>
                 </table>
             </section>
+            <style>
+            .reply-createtime{
+            	color: dimgrey;
+            	font-weight: bold;
+            	font-size: smaller;
+            }
+            </style>
             <section class="profile-content">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">日期</th>
-                        <th scope="col">我的回复</th>
-                    </tr>
-                    </thead>
-                    <tbody>
                     <s:iterator value="replies" status="L">
                    	<s:iterator value="replies[#L.index]">
-                        <tr>
-                            <th scope="row"><s:property value="createTime"></s:property></th>
-                            <td>
-                            	<s:property value="user.nickname"></s:property>	(<a href="gotoProfile?tempUserId=<s:property value="postsTheme.user.id"></s:property>"> 
-                            	<s:property value="user.email"></s:property></a>)
-                            	<br />
+                            <div class="row mb-3">
+                            	<div class="col">
+                            		<s:property value="user.nickname"></s:property>	(<a href="gotoProfile?tempUserId=<s:property value="postsTheme.user.id"></s:property>"> 
+                            		<s:property value="user.email"></s:property></a>)
+                            	</div>
+                            <div class="col reply-createtime">
+                            	<span class="float-right"><s:property value="createTime"></s:property></span>
+                            </div>
+                            </div>
+                            <div class="">
                             	<s:property value="content"></s:property>
-                            	<br />
-                                <a href="gotoDetail.action?themeId=<s:property value="post.theme.id"></s:property>">查看</a>
-                            </td>
-                        </tr>
+                            </div>
+                            <div class="row">
+                            	<div class="col"></div>
+                            	<div class="col">
+                            		<span class="float-right">
+                            			<a href="gotoDetail.action?themeId=<s:property value="post.theme.id"></s:property>"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                            		</span>
+                                </div>
+                            </div>
+                            <hr>
                         </s:iterator>
                     </s:iterator>
-                    </tbody>
-                </table>
             </section>
             <section class="profile-content">
                 <h5 class="text-grey mb-3">可以修改以下信息</h5>
