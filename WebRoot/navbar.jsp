@@ -15,8 +15,7 @@
 		<ul class="navbar-nav w-100 justify-content-center">
 			<li class="nav-item active mr-5"><a href="getThemeTable.action"
 				class="nav-link"><i class="fa fa-home mr-2"></i><span>首页</span></a></li>
-			<li class="nav-item"><a href="#" class="nav-link"><i
-					class="fa fa-home mr-2"></i></i><span>排名</span></a></li>
+			<li class="nav-item"><a href="#" class="nav-link"><i class="fab fa-hackerrank mr-2"></i></i></i><span>排名</span></a></li>
 		</ul>
 		<ul class="nav navbar-nav ml-auto w-100 justify-content-end">
 		</ul>

@@ -130,20 +130,38 @@
 		</div>
 	</div>
 
+	<style>
+	.table-title {
+	font-weight: normal;
+	color: grey;
+	font-size: small;
+	}
+	.heat-cell {
+	font-weight: normal;
+	color: #7F5AB6;
+	}
+	.reply-cell {
+	font-weight: bold;
+	color: dimgray;
+	}
+	.timeline-cell {
+	color: grey;
+	}
+	</style>
 
 	<table class="table container table-hover main-contents mt-4">
 		<thead>
 			<tr>
-				<th scope="col">热度</th>
-				<th scope="col">主题</th>
-				<th scope="col">回复数目</th>
-				<th scope="col">活动时间</th>
+				<th class="table-title" scope="col">热度</th>
+				<th class="table-title" scope="col">主题</th>
+				<th class="table-title" scope="col">回复数目</th>
+				<th class="table-title" scope="col">活动时间</th>
 			</tr>
 		</thead>
 		<tbody>
 			<s:iterator value="themetable">
 				<tr>
-					<th scope="row"><i class="fas fa-fire mr-2 text-primary"></i><s:property value="heat" /></th>
+					<th class="heat-cell" scope="row"><i class="fas fa-fire mr-2 text-primary"></i><s:property value="heat" /></th>
 					<td>
 						<form action="gotoDetail">
 							<input type="hidden" name="themeId" value="<s:property value="id" />" />
@@ -166,8 +184,8 @@
 				</button>
 						</form>
 					</td>
-					<td><s:property value="heat" /></td>
-					<td><s:property value="createTime" /></td>
+					<td class="reply-cell"><s:property value="heat" /></td>
+					<td class="timeline-cell"><s:property value="createTime" /></td>
 				</tr>
 			</s:iterator>
 		</tbody>
