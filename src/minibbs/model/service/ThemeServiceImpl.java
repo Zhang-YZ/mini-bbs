@@ -22,7 +22,7 @@ public class ThemeServiceImpl extends BaseService<Theme> implements ThemeService
 	}
 
 	@Override
-	public void createTheme(Theme theme) {
+	public void saveTheme(Theme theme) {
 		// TODO Auto-generated method stub
 		this.getDao().save(theme);
 	}
@@ -38,6 +38,20 @@ public class ThemeServiceImpl extends BaseService<Theme> implements ThemeService
 	public List<Theme> getThemesByUserDescTime(User user) {
 		// TODO Auto-generated method stub
 		return this.getDao().findBy("user.id", user.getId(),"createTime desc");
+	}
+
+	@Override
+	public List<Theme> getThemesBySubString(String cond) {
+		// TODO Auto-generated method stub
+		
+		return this.getDao().findBySubString("title", cond);
+	}
+
+	@Override
+	public void mergeTheme(Theme theme) {
+		// TODO Auto-generated method stub
+		this.getDao().merge(theme);
+		
 	}
 	
 	

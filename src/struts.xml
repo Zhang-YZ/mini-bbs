@@ -28,14 +28,18 @@
 		</action>
 
 
-
-
+		
 
 		<!-- index -->
 		<action name="getThemeTable" class="themeAction"
 			method="getTimeDescThemes">
-			<result name="success">/index.jsp</result>
+			<result name="success" type="chain" >
+				<param name="actionName">getReplyNumToIndex</param>
+			</result>
 		</action>
+
+		<action name="getiReplyNumToIndex" class="postAction" method="getReplyNumToIndex">
+			<result name="success" 		</action>
 
 		<action name="createTheme" class="themeAction"
 			method="createTheme">
@@ -43,7 +47,9 @@
 				<param name="actionName">getThemeTable</param>
 			</result>
 			<result name="tologin">/login.jsp</result>
-			<result name="input">/index.jsp</result>
+			<result name="input" type="chain">
+		        <param name="actionName">getThemeTable</param>
+		    </result>
 		</action>
 
 
@@ -134,9 +140,11 @@
 			</result>
 		</action>
 		
-<!-- 		<action name="searchTheme" class="themeAction" method="searchTheme">
-			<result name=""
-		</action> -->
+		<action name="searchTheme" class="themeAction" method="searchTheme">
+			<result name="success">/index.jsp</result>
+		</action>
+		<!-- 
+		<action name="getReply" -->
 
 		
 		

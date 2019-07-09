@@ -4,6 +4,7 @@ public class Theme extends BaseEntity {
 	public Theme() {
 		super(0);
 		this.heat=0;
+		this.hit=0;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -19,6 +20,7 @@ public class Theme extends BaseEntity {
 	
 	private User user;
 	private long heat;
+	private long hit;
 	private String title;
 	private String content;
 	
@@ -52,6 +54,14 @@ public class Theme extends BaseEntity {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public long getHit() {
+		return hit;
+	}
+
+	public void setHit(long hit) {
+		this.hit = hit;
 	}
 
 }

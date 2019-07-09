@@ -24,9 +24,10 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 		return SUCCESS;
 	}
 	
-//	public String searchTheme() {
-//		themetable = this.getService().
-//	}
+	public String searchTheme() {
+		themetable = this.getService().getThemesBySubString(searchContent);
+		return SUCCESS;
+	}
 	
 		
 	public String createTheme() throws Exception {
@@ -41,13 +42,15 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 			return INPUT;
 		}
 		theme.setUser(user);
-		this.getService().createTheme(theme);
+		this.getService().saveTheme(theme);
 		return SUCCESS;
 	}
 
 				
 	public String gotoDetail() {
 		Theme nowTheme =this.getService().getThemeById(themeId);
+		nowTheme.setHit(nowTheme.getHit()+1);
+		this.getService().mergeTheme(nowTheme);
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		session.put("nowtheme", nowTheme);
 		return SUCCESS;		

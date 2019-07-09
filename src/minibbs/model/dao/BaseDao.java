@@ -24,6 +24,8 @@ public interface BaseDao<TEntity> {
 	 */
 	void save(TEntity entity);
 	
+	void merge(TEntity entity);
+	
 	/**
 	 * delete an entity with the primary key id
 	 * @param id The primary key id of the entity to be deleted.
@@ -51,7 +53,7 @@ public interface BaseDao<TEntity> {
 	 */
 	List<TEntity> findBy(String propertyName, Object propertyValue);
 	List<TEntity> findBy(String propertyName, Object propertyValue,String cond);
-	
+	List<TEntity> findBySubString(String propertyName, String cond);
 	
 	
 }

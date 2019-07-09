@@ -8,6 +8,7 @@
 		</id>
 		<property name="createTime" not-null="true" />
 		<property name="heat" not-null="true"/>
+		<property name="hit" not-null="true"/>
 		<property name="title" type="string" not-null="true" length="100"/>
 		<property name="content" type="string" length="500"/>
 		<many-to-one name="user" not-null="true"></many-to-one>

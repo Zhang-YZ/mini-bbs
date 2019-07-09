@@ -9,7 +9,10 @@ public interface ThemeService{
 	
 	public List<Theme> getAllThemes();
 	public List<Theme> getAllThemes(String cond);
-	public void createTheme(Theme theme);
+	public void saveTheme(Theme theme);
+	public void mergeTheme(Theme theme);
+	
 	public Theme getThemeById(long id);
 	public List<Theme> getThemesByUserDescTime(User user);
+	public List<Theme> getThemesBySubString(String cond);
 }

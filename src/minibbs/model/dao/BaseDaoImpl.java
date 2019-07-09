@@ -8,6 +8,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import minibbs.model.entity.Theme;
+
 
 public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 
@@ -37,6 +39,14 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 		Session session = this.getSession();
 		session.beginTransaction();
 		session.saveOrUpdate(entity);
+		session.getTransaction().commit();
+		session.close();
+	}
+	
+	public void merge(TEntity entity) {
+		Session session = this.getSession();
+		session.beginTransaction();
+		session.merge(entity);
 		session.getTransaction().commit();
 		session.close();
 	}
@@ -95,6 +105,13 @@ public abstract class BaseDaoImpl<TEntity> implements BaseDao<TEntity> {
 	}
 	
 
+	public List<TEntity> findBySubString(String propertyName, String cond) {
+		String queryString = "from " + entityClass.getSimpleName() + " e ";
+		queryString += "where e." + propertyName + " like '%"+cond+"%'";
+		List<TEntity> entities = this.getSession().createQuery(queryString).list();
+		return entities;
+	}
+	
 
 	@SuppressWarnings("unchecked")
 	@Override
