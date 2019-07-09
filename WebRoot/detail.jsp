@@ -20,7 +20,7 @@
             src="assets/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
-    <title>Title</title>
+    <title>Detail</title>
     <!--</head>-->
 <body>
 <s:include value="navbar.jsp"/>
@@ -96,7 +96,7 @@
                     <s:iterator value="posts" status="L">
                         <div class="row mb-3">
                                 <div class="col-1">
-                                    <img width="45" height="45" src="https://s3.amazonaws.com/uifaces/faces/twitter/BillSKenney/73.jpg">
+                                    <img width="45" height="45" src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4">
                                 </div>
 
                                 <div class="contents col-11">

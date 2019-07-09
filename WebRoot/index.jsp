@@ -22,7 +22,7 @@
 	href="assets/icon.css">
 <link rel="stylesheet"
 	href="assets/font-awesome.min.css">
-<title>Title</title>
+<title>Mini BBS</title>
 </head>
 <body>
 

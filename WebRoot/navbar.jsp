@@ -58,12 +58,12 @@
 				class="avatar" alt="Avatar"></a>
 			<ul class="dropdown-menu">
 				<li><a href="gotoSelfProfile.action" class="dropdown-item"><i
-						class="fa fa-user-o"></i> Profile</a></li>
+						class="fa fa-user-o"></i> 个人中心</a></li>
 <%--				<li><a href="#" class="dropdown-item"><i--%>
 <%--						class="fa fa-sliders"></i> Settings</a></li>--%>
 				<li class="divider dropdown-divider"></li>
 				<li><a href="signout.action" class="dropdown-item">
-	<i class="fas fa-sign-out-alt"></i>Logout</a></li>
+	<i class="fas fa-sign-out-alt"></i>注销</a></li>
 			</ul></li>
 	</ul>
 </nav>

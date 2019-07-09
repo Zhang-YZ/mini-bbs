@@ -51,22 +51,22 @@
                     <ul class="tablnav nav-tabse">
                         <li data-rel="1" class="active">
                             <a href="#">
-                                <i class="glyphicon glyphicon-home"></i>
+                                <i class="ml-2 fas fa-book"></i>
                                 我的主题 </a>
                         </li>
                         <li data-rel="2">
                             <a href="#">
-                                <i class="glyphicon glyphicon-user"></i>
+                                <i class="ml-2 fas fa-book-open"></i>
                                 收到回复 </a>
                         </li>
                         <li data-rel="3">
                             <a href="#" target="_blank">
-                                <i class="glyphicon glyphicon-ok"></i>
+                               <i class="ml-2 far fa-sun"></i>
                                 账户设置 </a>
                         </li>
                         <li data-rel="4">
                             <a href="#">
-                                <i class="glyphicon glyphicon-flag"></i>
+                                <i class="ml-2 fas fa-question-circle"></i>
                                 查看帮助 </a>
                         </li>
                     </ul>

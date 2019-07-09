@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="pages/css/login.css">
 <link rel="stylesheet" href="pages/css/main.css">
 <script src="assets/fontawesomekit.js"></script>
-<title>Bootstrap 4 Login/Register Form</title>
+<title>MiniBBS Login/Register</title>
 </head>
 <style>
 #toast {
@@ -154,7 +154,7 @@ to {
 		%> --%>
 		<form action="signin" class="form-signin" method="post">
 			<h1 class="h3 mb-3 font-weight-normal text-primary"
-				style="text-align: center">Mini BBS</h1>
+				style="text-align: center">Mini <b>BBS</b></h1>
 			<input name="email" type="email" id="inputEmail"
 				class="form-control mb-2 rounded" placeholder="邮箱地址" required=""
 				autofocus=""> <input name="password" type="password"
