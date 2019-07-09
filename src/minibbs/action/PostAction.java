@@ -8,6 +8,7 @@ import org.apache.struts2.ServletActionContext;
 import com.opensymphony.xwork2.ActionContext;
 
 import minibbs.model.entity.Post;
+import minibbs.model.entity.Reply;
 import minibbs.model.entity.Theme;
 import minibbs.model.entity.User;
 import minibbs.model.service.PostService;
@@ -21,27 +22,30 @@ public class PostAction extends BaseAction<Post, PostService> {
 	private User tempUser;
 	private Post tempPost;
 	private long tempPostId;
+	private List<Theme> themetable;
+	private boolean hasDeleteReply=false;
+	private String errorMessage; 
 
-
-	
 	public String getPostToReply() {
 		this.tempPost = this.getService().getPostById(tempPostId);
-		System.out.println("============== postaction "+tempPost);
 		return SUCCESS;
 	}
-	
+
 	public String getPostsToDetail() {
 		Map<String, Object> session = ActionContext.getContext().getSession();
 		poststheme = (Theme) session.get("nowtheme");
 		posts = this.getService().getPostByThemeAscTime(poststheme);
 		return SUCCESS;
 	}
-	
+
+//	public String getPostNumToIndex() {
+//		
+//	}
 
 	public String addPost() {
 		try {
 			Map<String, Object> session = ActionContext.getContext().getSession();
-		    poststheme = (Theme) session.get("nowtheme");
+			poststheme = (Theme) session.get("nowtheme");
 			User user = (User) session.get("user");
 			if (user == null) {
 				return "tologin";
@@ -63,6 +67,32 @@ public class PostAction extends BaseAction<Post, PostService> {
 		posts = this.getService().getPostsByUserDescTime(tempUser);
 		return SUCCESS;
 	}
+
+	
+	public String deleteSinglePost() {
+		if(!hasDeleteReply) {
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			tempUser = (User) session.get("user");
+			if(tempUser == null) {
+				return "tologin";
+			}
+			tempPostId = this.getModel().getId();
+			tempPost=this.getService().getPostById(tempPostId);
+			System.out.println("++++++++++++ "+tempPost+"  "+tempPostId);
+			if(tempPost.getUser().getId()!=tempUser.getId()) {
+				errorMessage="您的权限不足！";
+				return SUCCESS;
+			}
+			return "toDeleteReply";
+		}
+		else {
+			this.getService().deletePostById(tempPostId);
+			this.hasDeleteReply=false;
+			return SUCCESS;
+		}
+	}
+	
+	
 	
 	public List<Post> getPosts() {
 		return posts;
@@ -88,11 +118,9 @@ public class PostAction extends BaseAction<Post, PostService> {
 		this.poststhemeid = poststhemeid;
 	}
 
-
 	public Post getTempPost() {
 		return tempPost;
 	}
-
 
 	public void setTempPost(Post tempPost) {
 		this.tempPost = tempPost;
@@ -114,6 +142,29 @@ public class PostAction extends BaseAction<Post, PostService> {
 		this.tempUser = tempUser;
 	}
 
+	public List<Theme> getThemetable() {
+		return themetable;
+	}
+
+	public void setThemetable(List<Theme> themetable) {
+		this.themetable = themetable;
+	}
+
+	public boolean isHasDeleteReply() {
+		return hasDeleteReply;
+	}
+
+	public void setHasDeleteReply(boolean hasDeleteReply) {
+		this.hasDeleteReply = hasDeleteReply;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
 
 //	public String getPoststr() {
 //		return poststr;

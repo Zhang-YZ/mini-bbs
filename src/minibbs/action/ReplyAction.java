@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.websocket.Session;
+
 import com.opensymphony.xwork2.ActionContext;
 
 import minibbs.model.entity.Post;
@@ -12,19 +14,66 @@ import minibbs.model.entity.Theme;
 import minibbs.model.entity.User;
 import minibbs.model.service.ReplyService;
 
-public class ReplyAction extends BaseAction<Reply,ReplyService>{
+public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	private static final long serialVersionUID = 1L;
 	private Theme poststheme;
 	private List<Post> posts;
 	private List<List<Reply>> replies = new ArrayList<List<Reply>>();
 	private Post tempPost;
+	private boolean hasDeleteReply=false;
+	private String errorMessage; 
 	
 	public String getRepliesToDetail() {
-		
-		for (Post post:posts) {
-			List<Reply> reply=this.getService().getRepliesByPostAscTime(post);
+
+		for (Post post : posts) {
+			List<Reply> reply = this.getService().getRepliesByPostAscTime(post);
 			replies.add(reply);
 		}
+		
+		return SUCCESS;
+	}
+
+	public String addReply() {
+		try {
+			System.out.println("============== post " + tempPost);
+			Map<String, Object> session = ActionContext.getContext().getSession();
+			User user = (User) session.get("user");
+			if (user == null) {
+				return "tologin";
+			}
+			Reply reply = this.getModel();
+			reply.setUser(user);
+			reply.setPost(tempPost);
+			this.getService().addReply(reply);
+			return SUCCESS;
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("======== except" + e);
+			return "input";
+		}
+	}
+
+	public String deleteSingleReply() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		User nowUser = (User) session.get("user");
+		if(nowUser == null) {
+			return "tologin";
+		}
+		Long tempId = this.getModel().getId();
+		Reply tempReply = this.getService().getReplyById(tempId);
+		if(tempReply.getUser().getId()!=nowUser.getId()) {
+			errorMessage="您的权限不足！";
+			return SUCCESS;
+		}
+		this.getService().deleteReplyById(tempId);
+		return SUCCESS;
+	}
+	
+	
+	
+	public String deleteReplies() {
+		this.getService().deleteRepliesByPost(tempPost);
+		this.hasDeleteReply=true;
 		return SUCCESS;
 	}
 	
@@ -45,58 +94,38 @@ public class ReplyAction extends BaseAction<Reply,ReplyService>{
 		this.poststheme = poststheme;
 	}
 
-
 	public List<List<Reply>> getReplies() {
 		return replies;
 	}
 
-
 	public void setReplies(List<List<Reply>> replies) {
 		this.replies = replies;
 	}
-	
-	public String addReply() {
-		try {
-			System.out.println("============== post "+tempPost);
-			Map<String, Object> session = ActionContext.getContext().getSession();
-			User user = (User) session.get("user");
-			if (user == null) {
-				return "tologin";
-			}
-			Reply reply = this.getModel();
-			reply.setUser(user);
-			reply.setPost(tempPost);
-			this.getService().addReply(reply);
-			return SUCCESS;
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println("======== except" + e);
-			return "input";
-		}
-	}
-
 
 	public Post getTempPost() {
 		return tempPost;
 	}
 
-
 	public void setTempPost(Post tempPost) {
 		this.tempPost = tempPost;
 	}
 
+	public boolean isHasDeleteReply() {
+		return hasDeleteReply;
+	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public void setHasDeleteReply(boolean hasDeleteReply) {
+		this.hasDeleteReply = hasDeleteReply;
+	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+
 //	private String replystr;
 //	private String poststr;
 //	private String testa;
@@ -151,5 +180,4 @@ public class ReplyAction extends BaseAction<Reply,ReplyService>{
 //		this.poststr = poststr;
 //	}
 
-	
 }

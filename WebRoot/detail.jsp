@@ -73,15 +73,24 @@
             <div class="comments mt-4">
                 <div class="main-contents">
                     <p>
+                            ++++++++++++++++++++++
+                    <s:if test="hasActionErrors()">
+
+        <s:actionerror />
+        =====================
+        </s:if>
+        <s:if test="hasActionMessages()">
+			
+        <s:actionmessage />
+        =====================
+        </s:if>
                     <s:property value="poststheme.content"></s:property>
                     </p>
                     <div class="row detail-cell-bottom">
                         <div class="col"></div>
                         <div class="col mb-2">
                             <div class="btn-group float-right" role="group" aria-label="">
-                                <button type="button" class="btn"><i class="fas fa-heart"></i></button>
                                 <button type="button" class="btn"><i class="fas fa-trash"></i></button>
-                                <button type="button" class="btn"><i class="fas fa-reply"></i></button>
                             </div>
                         </div>
                     </div>
@@ -114,18 +123,21 @@
                                     <div class="mt-2">
                                         <s:property value="content"></s:property>
                                     </div>
+                                    <form action="deleteSinglePost">
+                                    	<input name="id" value="<s:property value="id"></s:property>" type="hidden"/>
                                     <div class="row detail-cell-bottom">
                                         <div class="col"></div>
                                         <div class="col mb-2">
                                             <div class="btn-group float-right" role="group" aria-label="">
                                                 <button type="button" class="btn"><i class="fas fa-heart"></i></button>
-                                                <button type="button" class="btn"><i class="fas fa-trash"></i></button>
+                                                <button type="submit" class="btn"><i class="fas fa-trash"></i></button>
                                                 <button type="button" class="btn" type="button" data-toggle="collapse"
                                                         data-target="#reply-collapse<s:property value="#L.index+1"></s:property>"
                                                         aria-expanded="false" aria-controls="reply-collapse"><i class="fas fa-reply"></i></button>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
 
                                 </div>
                         </div>
@@ -157,16 +169,19 @@
                                         <p class="card-text">
                                             <s:property value="content"></s:property>
                                         </p>
+                                        <form action="deleteSingleReply">
+                                        	<input name="id" value="<s:property value="id"></s:property>" type="hidden"/>
                                         <div class="row detail-cell-bottom">
                                             <div class="col"></div>
                                             <div class="col mb-2">
                                                 <div class="btn-group float-right" role="group" aria-label="">
-                                                    <button type="button" class="btn"><i class="fas fa-heart"></i></button>
-                                                    <button type="button" class="btn"><i class="fas fa-trash"></i></button>
-                                                    <button type="button" class="btn"><i class="fas fa-reply"></i></button>
+                                                    <!-- <button type="button" class="btn"><i class="fas fa-heart"></i></button> -->
+                                                    <button type="submit" class="btn"><i class="fas fa-trash"></i></button>
+                                                    <!-- <button type="button" class="btn"><i class="fas fa-reply"></i></button> -->
                                                 </div>
                                             </div>
                                         </div>
+                                        </form>
                                     </div>
                                 </s:iterator>
 

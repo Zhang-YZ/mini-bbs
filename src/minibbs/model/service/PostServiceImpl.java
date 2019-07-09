@@ -49,4 +49,13 @@ public class PostServiceImpl extends BaseService<Post> implements PostService{
 		return this.getDao().findBy("user.id", user.getId(),"createTime desc");
 	}
 
+
+
+	@Override
+	public void deletePostById(long id) {
+		// TODO Auto-generated method stub
+		this.getDao().delete(id);
+		
+	}
+
 }

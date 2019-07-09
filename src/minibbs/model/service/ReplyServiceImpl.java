@@ -25,4 +25,26 @@ public class ReplyServiceImpl extends BaseService<Reply> implements ReplyService
 		return this.getDao().findBy("post.id", post.getId(),"createTime asc");
 	}
 
+	@Override
+	public void deleteReplyById(long id) {
+		// TODO Auto-generated method stub
+		this.getDao().delete(id);
+	}
+
+	@Override
+	public Reply getReplyById(long id) {
+		// TODO Auto-generated method stub
+		return this.getDao().get(id);
+	}
+
+	@Override
+	public void deleteRepliesByPost(Post post) {
+		// TODO Auto-generated method stub
+		List<Reply> replies = getRepliesByPost(post);
+		for(Reply tempReply:replies) {
+			deleteReplyById(tempReply.getId());
+		}
+		
+	}
+
 }

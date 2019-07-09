@@ -33,13 +33,14 @@
 		<!-- index -->
 		<action name="getThemeTable" class="themeAction"
 			method="getTimeDescThemes">
-			<result name="success" type="chain" >
+			<result name="success" >/index.jsp</result>
+<!-- 			<result name="success" type="chain" >
 				<param name="actionName">getReplyNumToIndex</param>
-			</result>
+			</result> -->
 		</action>
 
-		<action name="getiReplyNumToIndex" class="postAction" method="getReplyNumToIndex">
-			<result name="success" 		</action>
+<!-- 		<action name="getiReplyNumToIndex" class="postAction" method="getReplyNumToIndex">
+			<result name="success" 		</action> -->
 
 		<action name="createTheme" class="themeAction"
 			method="createTheme">
@@ -143,8 +144,31 @@
 		<action name="searchTheme" class="themeAction" method="searchTheme">
 			<result name="success">/index.jsp</result>
 		</action>
-		<!-- 
-		<action name="getReply" -->
+		
+
+        <action name="deleteSingleReply" class="replyAction" method="deleteSingleReply">
+        	<result name="success" type="chain">
+        		<param name="actionName">getPostsToDetail</param>
+        	</result>
+        	<result name="tologin">/login.jsp</result>
+        </action>
+        
+        <action name="deleteSinglePost" class="postAction" method="deleteSinglePost">
+        	<result name="toDeleteReply" type="chain">
+        	<param name="actionName">deleteReplies</param>
+        	</result>
+        	<result name="tologin">/login.jsp</result>
+        	<result name="success" type="chain">
+        		<param name="actionName">getPostsToDetail</param>
+        	</result>
+        	
+        </action>
+        
+        <action name="deleteReplies" class="replyAction" method="deleteReplies">
+        	<result name="success" type="chain">
+        	<param name="actionName">deleteSinglePost</param>
+        	</result>
+        </action>
 
 		
 		

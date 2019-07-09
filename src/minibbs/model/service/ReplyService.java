@@ -9,4 +9,7 @@ public interface ReplyService{
 	public List<Reply> getRepliesByPost(Post post);
 	public List<Reply> getRepliesByPostAscTime(Post post);
 	public void addReply(Reply reply);
+	public void deleteReplyById(long id);
+	public Reply getReplyById(long id);
+	public void deleteRepliesByPost(Post post);
 }

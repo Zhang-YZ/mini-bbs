@@ -12,4 +12,5 @@ public interface PostService{
 	public void addPost(Post post);
 	public Post getPostById(long id);
 	public List<Post> getPostsByUserDescTime(User user);
+	public void deletePostById(long id);
 }
