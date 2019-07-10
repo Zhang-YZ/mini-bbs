@@ -41,7 +41,7 @@
 						<s:iterator value="users" status="L">
 						<tr>
 							<td>
-								<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+								<img src="https://avatars3.githubusercontent.com/u/31076337?s=460&v=4" alt="">
 								<!-- <a href="#" class="user-link"> -->
 								<div class="mt-3"><s:property value="nickname"></s:property></div><!-- </a> -->
 							</td>

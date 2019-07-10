@@ -155,7 +155,9 @@
 		</action>
 		
 		<action name="searchTheme" class="themeAction" method="searchTheme">
-			<result name="success">/index.jsp</result>
+			<result name="success" type="chain" >
+				<param name="actionName">getPostNumToIndex</param>
+			</result>
 		</action>
 		
 		
