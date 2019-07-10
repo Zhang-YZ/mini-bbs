@@ -1,5 +1,7 @@
 package minibbs.model.service;
 
+import java.util.List;
+
 import minibbs.model.entity.User;
 
 import minibbs.util.Encrypt;
@@ -49,6 +51,19 @@ public class UserServiceImpl extends BaseService<User> implements UserService{
 	public User getUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		return this.getDao().getSingle("email", email);
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		// TODO Auto-generated method stub
+		return this.getDao().findAll("createTime asc");
+		
+	}
+
+	@Override
+	public void mergeUser(User user) {
+		// TODO Auto-generated method stub
+		this.getDao().merge(user);
 	}
 
 }

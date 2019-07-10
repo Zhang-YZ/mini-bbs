@@ -12,8 +12,13 @@ public class HeatUtil {
         long seconds = d.getTime()/1000;
         return seconds;
 	}
+	
 	public static int getHeat(long timeSecond,long l,int replyNum) {
 		long temp = timeSecond-1562700000;
 		return (int) (l+replyNum*5+temp/86400*5);
+	}
+	
+	public static String dealTime(String timestr) {
+		return timestr.split(" ")[0];
 	}
 }

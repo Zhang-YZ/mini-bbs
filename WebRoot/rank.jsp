@@ -7,6 +7,15 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="pages/css/main.css">
 <link href="assets/font-awesome.min.css" rel="stylesheet">
+<script src="assets/jquery-3.2.1.slim.min.js"></script>
+<script
+	src="assets/popper.min.js"
+	integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+	crossorigin="anonymous"></script>
+<script
+	src="assets/bootstrap.min.js"
+	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+	crossorigin="anonymous"></script>
 <title>Insert title here</title>
 </head>
 <s:include value="navbar.jsp"/>
@@ -21,32 +30,32 @@
 					<thead>
 						<tr>
 							<th><span>用户</span></th>
-							<th><span>创建于</span></th>
-							<th class="text-center"><span>Rank值</span></th>
+							<th><span>创建时间</span></th>
+							<th class="text-center"><span>主题数</span></th>
 							<th><span>电子邮箱</span></th>
 							<th>&nbsp;</th>
 						</tr>
 					</thead>
 					<tbody>
 
-	<%--	在iterator里面 <tr></tr> 即可--%>
+						<s:iterator value="users" status="L">
 						<tr>
 							<td>
 								<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-								<a href="#" class="user-link">Mila Kunis</a>
-								<span class="user-subhead">Admin</span>
+								<!-- <a href="#" class="user-link"> -->
+								<div class="mt-3"><s:property value="nickname"></s:property></div><!-- </a> -->
 							</td>
 							<td>
-								2013/08/08
+								<s:property value="userCreateTime[#L.index]"></s:property>
 							</td>
 							<td class="text-center">
-								<span class="label label-default">91</span>
+								<span class="label label-default"><s:property value="userThemeNum[#L.index]"></s:property></span>
 							</td>
 							<td>
-								<a href="#">mila@kunis.com</a>
+								<s:property value="email"></s:property>
 							</td>
 							<td style="width: 20%;">
-								<a href="#" class="table-link">
+								<a href="gotoProfile?tempUserId=<s:property value="id"></s:property>" class="table-link">
 									<span class="fa-stack">
 										<i class="fa fa-square fa-stack-2x"></i>
 										<i class="fa fa-search-plus fa-stack-1x fa-inverse"></i>
@@ -55,23 +64,11 @@
 							</td>
 						</tr>
 
-			<%--	在iterator里面 <tr></tr> 即可--%>
-
-
-
+						</s:iterator>
 
 					</tbody>
 				</table>
 			</div>
-			<ul class="pagination pull-right">
-				<li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
-			</ul>
 		</div>
 	</div>
 </div>

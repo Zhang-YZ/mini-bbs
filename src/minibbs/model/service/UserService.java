@@ -1,5 +1,7 @@
 package minibbs.model.service;
 
+import java.util.List;
+
 import minibbs.model.entity.User;
 
 public interface UserService{
@@ -13,4 +15,6 @@ public interface UserService{
 	public User getUserById(long id);
 	
 	public User getUserByEmail(String email);
+	public List<User> getAllUsers();
+	public void mergeUser(User user);
 }

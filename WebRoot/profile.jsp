@@ -38,13 +38,16 @@
                     <div class="profile-usertitle-job">
                         <s:property value="tempUser.email"></s:property>
                     </div>
+                    <div class="profile-usertitle-job">
+                        CREATED AT <s:property value="transedUserTime"></s:property>
+                    </div>
                 </div>
                 <!-- END SIDEBAR USER TITLE -->
                 <!-- SIDEBAR BUTTONS -->
-                <div class="profile-userbuttons">
+                <!-- <div class="profile-userbuttons">
                     <button type="button" class="btn btn-primary btn-sm">Follow</button>
                     <button type="button" class="btn btn-info btn-sm">Message</button>
-                </div>
+                </div> -->
                 <!-- END SIDEBAR BUTTONS -->
                 <!-- SIDEBAR MENU -->
                 <div id="profile-selector" class="profile-usermenu">
@@ -64,11 +67,11 @@
                                <i class="ml-2 far fa-sun"></i>
                                 账户设置 </a>
                         </li>
-                        <li data-rel="4">
+                        <!-- <li data-rel="4">
                             <a href="#">
                                 <i class="ml-2 fas fa-question-circle"></i>
                                 查看帮助 </a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
                 <!-- END MENU -->
@@ -158,14 +161,16 @@
                         </s:iterator>
                     </s:iterator>
             </section>
-            <section class="profile-content">
+            <section class="profile-content p-2">
                 <h5 class="text-grey mb-3">可以修改以下信息</h5>
+                <form action="changeNickname">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="输入新的用户名" aria-label="" aria-describedby="basic-addon2">
+                    <input name="nickname" type="text" class="form-control" placeholder="输入新的用户名" aria-label="" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                        <button class="btn btn-outline-primary" type="button">点击修改</button>
+                        <button class="btn btn-outline-primary" type="submit">点击修改</button>
                     </div>
                 </div>
+                </form>
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="输入新的密码" aria-label="" aria-describedby="basic-addon2">
                     <div class="input-group-append">

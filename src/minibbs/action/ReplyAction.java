@@ -27,6 +27,7 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	private List<Integer> replyNum;
 	private List<Integer> heatNum;
 	private List<Theme> themetable;
+	private String transedUserTime;
 	
 	public String getRepliesToDetail() {
 		for (Post post : posts) {
@@ -44,7 +45,7 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 		long tempTime2;
 		for(int i=0;i<themePosts.size();i++) {
 			tempReplyNum = 0;
-			tempTime=0;
+			tempTime=HeatUtil.turnToSecond(themetable.get(i).getCreateTime());
 			tempTime2=0;
 			for(int j=0;j<themePosts.get(i).size();j++) {
 				if(themePosts.get(i).get(j)!=null) {
@@ -62,7 +63,6 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 					tempReplyNum += (1+replies.size());
 				}	
 			}
-			
 			replyNum.add(tempReplyNum);		
 			heatNum.add(HeatUtil.getHeat(tempTime, themetable.get(i).getHit(), tempReplyNum));
 		}
@@ -74,6 +74,9 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 			List<Reply> reply = this.getService().getRepliesByPost(post);
 			replies.add(reply);
 		}
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		User tempUser= (User) session.get("user");
+		transedUserTime=HeatUtil.dealTime(tempUser.getCreateTime());
 		return SUCCESS;
 	}
 
@@ -182,12 +185,28 @@ public class ReplyAction extends BaseAction<Reply, ReplyService> {
 	public void setReplyNum(List<Integer> replyNum) {
 		this.replyNum = replyNum;
 	}
+	
+	public List<Integer> getHeatNum() {
+		return heatNum;
+	}
+
+	public void setHeatNum(List<Integer> heatNum) {
+		this.heatNum = heatNum;
+	}
 	public List<Theme> getThemetable() {
 		return themetable;
 	}
 
 	public void setThemetable(List<Theme> themetable) {
 		this.themetable = themetable;
+	}
+
+	public String getTransedUserTime() {
+		return transedUserTime;
+	}
+
+	public void setTransedUserTime(String transedUserTime) {
+		this.transedUserTime = transedUserTime;
 	}
 
 }

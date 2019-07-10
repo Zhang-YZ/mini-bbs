@@ -1,5 +1,6 @@
 package minibbs.action;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.Spring;
@@ -14,7 +15,7 @@ public class UserAction extends BaseAction<User,UserService>{
 	private User tempUser;
 	private long tempUserId;
 	private String searchContent;
-	
+	private List<User> users;
 	
     public String signin() throws Exception{
     	String email = this.getModel().getEmail();
@@ -126,7 +127,20 @@ public class UserAction extends BaseAction<User,UserService>{
 		
 	}
 	
+	public String changeNickname() {
+		Map<String, Object> session = ActionContext.getContext().getSession();
+    	tempUser = (User) session.get("user");
+    	tempUser.setNickname(this.getModel().getNickname());
+    	this.getService().mergeUser(tempUser);
+    	return SUCCESS;
+	}
 
+	public String gotoRank() {
+		users = this.getService().getAllUsers();
+		return SUCCESS;
+	}
+	
+	
 	public User getTempUser() {
 		return tempUser;
 	}
@@ -154,6 +168,16 @@ public class UserAction extends BaseAction<User,UserService>{
 
 	public void setSearchContent(String searchContent) {
 		this.searchContent = searchContent;
+	}
+
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
 	}
     
 }

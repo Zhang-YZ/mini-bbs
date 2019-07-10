@@ -238,32 +238,19 @@
 
 		
 		
-		
-		
-<!-- 		<action name="addPostGetTheme" class="themeAction" method="addPostGetTheme">
+		<action name="gotoRank" class="userAction" method="gotoRank">
 			<result name="success" type="chain">
-				<param name="actionName">addPost</param>
-			</result>
-		</action> -->
-
-<!-- 		<action name="testPost" class="postAction" method="testPost">
-			<result name="success" type="chain">
-				<param name="actionName">testReply</param>
-			</result>
-			
+        		<param name="actionName">getThemeNumToRank</param>
+        	</result>
 		</action>
-
-		<action name="testReply" class="replyAction" method="testReply">
-			<result name="success" >/result.jsp</result>
-			
-		</action> -->
+		<action name="getThemeNumToRank" class="themeAction" method="getThemeNumToRank">
+			<result name="success">/rank.jsp</result>
+		</action>
 		
-<!-- 		<action name="test2" class="postAction" method="test2">
-			<result name="success">/result.jsp</result>
-		</action> -->
-		
-<!-- 		<action name="testhref" class="userAction" method="testhref">
-			<result name="success">/result.jsp</result>
-		</action> -->
+		<action name="changeNickname" class="userAction" method="changeNickname">
+			<result name="success" type="chain">
+				<param name="actionName">getThemesToProfile</param>
+			</result>
+		</action>
 	</package>
 </struts>

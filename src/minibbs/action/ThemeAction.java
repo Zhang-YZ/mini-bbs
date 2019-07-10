@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.ServletActionContext;
-
 import com.opensymphony.xwork2.ActionContext;
 
 import minibbs.model.entity.Theme;
 import minibbs.model.entity.User;
 import minibbs.model.service.ThemeService;
+import minibbs.util.HeatUtil;
 
 public class ThemeAction extends BaseAction<Theme, ThemeService> {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +18,9 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 	private User tempUser;
 	private String searchContent;
 	private Theme postsTheme;
+	private List<Integer> userThemeNum;
+	private List<User> users;
+	private List<String> userCreateTime;
 	
 	public String getTimeDescThemes() {
 		themetable = this.getService().getAllThemes("createTime desc");
@@ -33,7 +35,15 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 		return SUCCESS;
 	}
 	
-	
+	public String getThemeNumToRank() {
+		userThemeNum=new ArrayList<Integer>();
+		userCreateTime = new ArrayList<String>();
+		for(User user:users) {
+			userThemeNum.add(this.getService().getThemesByUserDescTime(user).size());
+			userCreateTime.add(HeatUtil.dealTime(user.getCreateTime()));
+		}
+		return SUCCESS;
+	}
 	
 	
 	
@@ -138,5 +148,31 @@ public class ThemeAction extends BaseAction<Theme, ThemeService> {
 	public void setPostsTheme(Theme postsTheme) {
 		this.postsTheme = postsTheme;
 	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
+	public List<Integer> getUserThemeNum() {
+		return userThemeNum;
+	}
+
+	public void setUserThemeNum(List<Integer> userThemeNum) {
+		this.userThemeNum = userThemeNum;
+	}
+
+	public List<String> getUserCreateTime() {
+		return userCreateTime;
+	}
+
+	public void setUserCreateTime(List<String> userCreateTime) {
+		this.userCreateTime = userCreateTime;
+	}
+
 
 }

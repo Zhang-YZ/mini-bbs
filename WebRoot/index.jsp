@@ -51,7 +51,6 @@
 		</div>
 
 		<button class="btn btn-primary ml-2">最新</button>
-		<button class="btn btn-primary ml-2">未读</button>
 		<button class="btn btn-primary ml-2">热门</button>
 
 		<button class="btn btn-info justify-content-end ml-auto"
@@ -126,9 +125,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<s:iterator value="themetable">
+			<s:iterator value="themetable" status="L">
 				<tr>
-					<th class="heat-cell" scope="row"><i class="fas fa-fire mr-2 text-primary"></i><s:property value="heat" /></th>
+					<th class="heat-cell" scope="row"><i class="fas fa-fire mr-2 text-primary"></i><s:property value="heatNum[#L.index]" /></th>
 					<td>
 						<form action="gotoDetail">
 							<input type="hidden" name="themeId" value="<s:property value="id" />" />
@@ -151,7 +150,7 @@
 				</button>
 						</form>
 					</td>
-					<td class="reply-cell"><s:property value="heat" /></td>
+					<td class="reply-cell"><s:property value="replyNum[#L.index]" /></td>
 					<td class="timeline-cell"><s:property value="createTime" /></td>
 				</tr>
 			</s:iterator>
